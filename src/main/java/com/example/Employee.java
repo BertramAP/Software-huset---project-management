@@ -1,4 +1,5 @@
 package com.example;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Employee {
@@ -7,6 +8,7 @@ public class Employee {
 
     public Employee(String ID) {
         this.ID = ID;
+        this.projects = new ArrayList<Project>();
     }
     public void createProject(String name) {
         Project project = new Project(name);
