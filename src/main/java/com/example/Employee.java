@@ -17,4 +17,8 @@ public class Employee {
     public List<Project> getProjects() {
         return projects;
     }
+
+    public String getID() {
+        return ID;
+    }
 }
