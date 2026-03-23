@@ -14,5 +14,5 @@ Scenario: View report for non-existing activity
 	Given there is a project with name "Testing26001"
 	And the employee "bap" is the project leader of the project
 	And the project has an activity with name "Testing"
-	When the project leader requests time used on activity "gnitseT"
+	When the project leader requests time used on activity "Testing"
 	Then the error message "Activity does not exist" is given
