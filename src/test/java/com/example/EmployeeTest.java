@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class EmployeeTest {
+    Employee employee;
     @Given("there is an employee with initials {string}")
     public void there_is_an_employee_with_initials(String string) {
         // Write code here that turns the phrase above into concrete actions
