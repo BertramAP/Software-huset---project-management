@@ -13,7 +13,8 @@ public class ProjectReportTest {
         throw new PendingException("idfk");
     }
 
-    @And("the employee {string} is the project leader of the project") {
-        throw new PendingException()
+    @And("the employee {string} is the project leader of the project")
+    public void the_employee_is_the_project_leader_of_the_project(String name) {
+        throw new PendingException("idfk");
     }
 }
