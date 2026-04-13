@@ -59,4 +59,10 @@ public class ProjectTest {
         // Write code here that turns the phrase above into concrete actions
         appHolder.getCurrentProject().assignProjectLeader(appHolder.getCurrentEmployee());
     }
+    @When("the project leader requests time used on activity {string}")
+    public void theProjectLeaderRequestsTimeUsedOnActivity(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
 }

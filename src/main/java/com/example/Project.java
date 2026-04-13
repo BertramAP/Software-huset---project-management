@@ -60,13 +60,22 @@ public class Project {
         return null;
     }
 
+
     public String generateReport() {
-        int totalHalfHours = 0;
-        for (Activity activity: activities) {
-            totalHalfHours += activity.getTimeUsed();
-        }
+        int totalHalfHours = getTimeUsed();
         String hours = Double.toString(totalHalfHours / 2.);
         if (hours.endsWith(".0")) hours = hours.substring(0, hours.length()-2);
         return "total time spent: " + hours + " hours";
+    }
+    public int getTimeUsed() {
+        int time = 0;
+        for(Activity a: activities) {
+            time += activities.getLast().getTimeUsed();
+        }
+        return time;
+    }
+
+    public int getTimeUsed(String activityID) {
+        return getActivity(activityID).getTimeUsed();
     }
 }
