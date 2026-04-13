@@ -1,9 +1,7 @@
 package com.example;
+
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
-
 
 public class Activity {
     private String ID;
@@ -12,48 +10,30 @@ public class Activity {
     private int budgetHalfHours;
     private HashMap<String, Contribution> contributions;
     private String creatorID;
-    private List<String> employees;
 
-    public Activity(String ID, Calendar startDate, Calendar endDate, int budgetHalfHours, String creatorID) {
+    public Activity(String ID) {
         this.ID = ID;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.budgetHalfHours = budgetHalfHours;
-        this.contributions = new HashMap<String, Contribution>();
-        this.creatorID = creatorID;
-        this.employees = new ArrayList<String>();
+        this.contributions = new HashMap<>();
     }
 
     public String getID() {
         return ID;
     }
-    public void addContribution(String employeeID, Contribution contribution) {
-        contributions.put(employeeID, contribution);
-    }
 
     public int getWorkHalfHours() {
-        int totalHalfHours = 0;
-        for (Contribution contribution : contributions.values()) {
-            totalHalfHours += contribution.getWorkTime();
-        }
-        return totalHalfHours;
+        return budgetHalfHours;
     }
 
-    public Contribution getContribution(String ID) {
-        return contributions.get(ID);
+    public Contribution getContribution(String id) {
+        return contributions.get(id);
     }
 
     public int getTimeUsed() {
-        int totalHalfHours = 0;
-        for (Contribution contribution : contributions.values()) {
-            totalHalfHours += contribution.getWorkTime();
-        }
-        return totalHalfHours;
+        return contributions.values().stream().mapToInt(c -> c.getWorkTime()).sum();
     }
-    public int getTimeUsed(String ID) {
-        if (contributions.containsKey(ID)) {
-            return contributions.get(ID).getWorkTime();
-        }
-        return 0;
+
+    public int getTimeUsed(String id) {
+        Contribution c = contributions.get(id);
+        return c != null ? c.getWorkTime() : 0;
     }
 }
