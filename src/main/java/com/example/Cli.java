@@ -1,10 +1,16 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.example.cli.AbstractCommand;
+import com.example.cli.commands.AssignCommand;
+import com.example.cli.commands.CreateProjectCommand;
 
 public class Cli {
     private ProjectApp app;
     private Employee currentUser;
+    private ArrayList<AbstractCommand> commands = new ArrayList<>();
 
     Cli() {
     }
@@ -47,28 +53,17 @@ public class Cli {
     public void onCommand(String[] args) {
         if (args.length == 0) return;
 
-        switch (args[0]) {
-            case "help": {
-                System.out.println("Commands:");
-                System.out.println(" create-project <name>");
-                System.out.println(" assign <projectId> <userId>");
-                return;
+        if (args[0].equals("help")) {
+            System.out.println("Commands:");
+            for (AbstractCommand c : commands) {
+                System.out.println(c.getUsage());
             }
+            System.out.println("exit");
+            return;
+        }
 
-            case "create-project": {
-                if (args.length < 2) throw new IllegalArgumentException("Please specify a name!");
-        
-                Project project = app.createProject(args[1]);
-                System.out.println("Created project " + args[1] + " with ID " + project.getID());
-                return;
-            }
-
-            case "assign": {
-                if (args.length < 3) throw new IllegalArgumentException("Usage: assign <projectId> <userId>");
-
-                app.assignEmployee(args[1], args[2]);
-                return;
-            }
+        for (AbstractCommand c : commands) {
+            if (c.onCommand(args)) return;
         }
 
         System.out.println("Unknown command");
@@ -76,5 +71,8 @@ public class Cli {
 
     public void setApp(ProjectApp app) {
         this.app = app;
+        commands.clear();
+        commands.add(new AssignCommand(app));
+        commands.add(new CreateProjectCommand(app));
     }
 }
