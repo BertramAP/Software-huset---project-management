@@ -1,9 +1,12 @@
 package com.example;
 
+import io.cucumber.java.PendingException;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en_old.Ac;
 
 import java.time.LocalDate;
 
@@ -59,10 +62,14 @@ public class ProjectTest {
         // Write code here that turns the phrase above into concrete actions
         appHolder.getCurrentProject().assignProjectLeader(appHolder.getCurrentEmployee());
     }
-    @When("the project leader requests time used on activity {string}")
-    public void theProjectLeaderRequestsTimeUsedOnActivity(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("the project leader requests time used on activity {string} on project {string}")
+    public void theProjectLeaderRequestsTimeUsedOnActivity(String activityID, String projectID) {
+        try {
+            System.out.println(appHolder.getApp().getProject(projectID).getActivity(activityID));
+            appHolder.getApp().getProject(projectID).getActivity(activityID).getTimeUsed();
+        } catch (Exception e) {
+            appHolder.setError(new Exception("Activity does not exist"));
+        }
     }
 
 }

@@ -70,7 +70,7 @@ public class Project {
     public int getTimeUsed() {
         int time = 0;
         for(Activity a: activities) {
-            time += activities.getLast().getTimeUsed();
+            time += a.getTimeUsed();
         }
         return time;
     }
