@@ -35,8 +35,4 @@ public class Project {
         }
         return false;
     }
-
-    public Employee getUser(String name) { return null; }
-
-    public void addActivity(Activity activity) {}
 }
