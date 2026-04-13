@@ -39,6 +39,9 @@ public class Project {
         return false;
     }
     public void addActivity(Activity activity) {
+        if (getActivity(activity.getID()) != null) {
+            throw new RuntimeException("Activity already exists");
+        }
         activities.add(activity);
 
     }
