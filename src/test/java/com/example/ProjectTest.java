@@ -1,12 +1,9 @@
 package com.example;
 
-import io.cucumber.java.PendingException;
-import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en_old.Ac;
 
 import java.time.LocalDate;
 
@@ -56,5 +53,10 @@ public class ProjectTest {
     public void theReportShowsTotalHoursSpentOnTheProject(int hours) {
         String expectedReport = "total time spent: " + hours + " hours";
         assertEquals(expectedReport, projectReport);
+    }
+    @When("the employee {string} is assigned as project leader")
+    public void theEmployeeIsAssignedAsProjectLeader(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        appHolder.getCurrentProject().assignProjectLeader(appHolder.getCurrentEmployee());
     }
 }
