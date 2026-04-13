@@ -49,8 +49,8 @@ public class ProjectTest {
         projectReport = appHolder.getApp().getProject(projectName).generateReport();
     }
 
-    @Then("the report shows {int} total hours spent on the project")
-    public void theReportShowsTotalHoursSpentOnTheProject(int hours) {
+    @Then("the report shows {string} total hours spent on the project")
+    public void theReportShowsTotalHoursSpentOnTheProject(String hours) {
         String expectedReport = "total time spent: " + hours + " hours";
         assertEquals(expectedReport, projectReport);
     }
