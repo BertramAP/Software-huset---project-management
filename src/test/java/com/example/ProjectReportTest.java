@@ -1,10 +1,9 @@
 package com.example;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
-import org.junit.Test;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

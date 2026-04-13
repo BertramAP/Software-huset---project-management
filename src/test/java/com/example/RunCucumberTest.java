@@ -1,15 +1,20 @@
-package com.example; // Make sure this matches your actual package name
+package com.example;
 
-import org.junit.runner.RunWith;
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
+import org.junit.platform.suite.api.ConfigurationParameter;
+import org.junit.platform.suite.api.IncludeEngines;
+import org.junit.platform.suite.api.SelectClasspathResource;
+import org.junit.platform.suite.api.Suite;
 
-@RunWith(Cucumber.class)
-@CucumberOptions(
-    features = "src/test/resources/com/example", // Where your .feature files live
-    glue = "com.example",                        // Where your Java step definitions will live
-    plugin = {"pretty", "html:target/cucumber-reports.html"} // Generates a nice HTML report
-)
+import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
+import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
+import static io.cucumber.junit.platform.engine.Constants.SNIPPET_TYPE_PROPERTY_NAME;
+
+@Suite
+@IncludeEngines("cucumber")
+@SelectClasspathResource("com/example") // Points to src/test/resources/com/example
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.example") // Points to your step definitions
+@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, html:target/cucumber-reports.html") // Replaces plugin = {...}
+@ConfigurationParameter(key = SNIPPET_TYPE_PROPERTY_NAME, value = "camelcase") // Forces camelCase snippets
 public class RunCucumberTest {
-    // This class will be empty. The annotations above will take care of everything.
+    // This class must remain empty.
 }
