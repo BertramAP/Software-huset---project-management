@@ -10,11 +10,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class ProjectReportTest {
+/*
     String projectName;
     Project project;
-    App app; // TODO: Init this somehow?
+    App app; // TODO: Init this somehow
 
-    /*
     @And("the employee {string} is the project leader of the project")
     public void the_employee_is_the_project_leader_of_the_project(String name) {
         app.createUser(name);
@@ -50,5 +50,5 @@ public class ProjectReportTest {
         throw new PendingException();
     }
 
-
+*/
 }
