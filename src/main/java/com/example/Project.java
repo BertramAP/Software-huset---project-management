@@ -17,6 +17,11 @@ public class Project {
         this.activities = new ArrayList<Activity>();
         this.projectLeader = null;
     }
+
+    public String getProjectID() {
+        return this.projectID;
+    }
+
     public void assignEmploye(Employee employee) {
         this.employees.add(employee);
     }

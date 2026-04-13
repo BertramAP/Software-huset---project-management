@@ -2,6 +2,8 @@ package com.example;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.example.errors.DuplicateProjectNameException;
+import io.cucumber.java.PendingException;
 import java.util.Calendar;
 
 import io.cucumber.java.en.And;
@@ -13,6 +15,7 @@ public class EmployeeTest {
     Employee employee;
     AppHolder appHolder;
     Project project;
+    Exception errorHolder;
 
     public EmployeeTest(AppHolder appHolder) { // Pico container attempt:
         this.appHolder = appHolder;
@@ -26,7 +29,12 @@ public class EmployeeTest {
     @When("the employee creates a project with name {string}")
     public void theEmployeeCreatesAProjectWithName(String string) {
         App app = appHolder.getApp();
-        project = app.createProject(string);
+        // Catch the error and save it to be used in other step
+        try {
+            project = app.createProject(string);
+        } catch (DuplicateProjectNameException e) {
+            errorHolder = e;
+        }
         appHolder.setApp(app);
         employee.addProject(project);
     }
@@ -71,4 +79,8 @@ public class EmployeeTest {
 
 
 
+    @Then("the error message {string} is given")
+    public void theErrorMessageIsGiven(String errorMessage) {
+        assertEquals(errorHolder.getMessage(), errorMessage);
+    }
 }
