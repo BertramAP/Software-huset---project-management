@@ -14,11 +14,11 @@ public class ProjectReportTest {
     Project project;
     App app; // TODO: Init this somehow?
 
-    @Given("there is a project with name {string}")
+    /*@Given("there is a project with name {string}")
     public void there_is_a_project_with_name(String projectName) {
         this.projectName = projectName;
         app.createProject(projectName);
-    }
+    }*/
 
     @And("the employee {string} is the project leader of the project")
     public void the_employee_is_the_project_leader_of_the_project(String name) {
@@ -55,9 +55,5 @@ public class ProjectReportTest {
         throw new PendingException();
     }
 
-    @Then("the error message {string} is given")
-    public void theErrorMessageIsGiven(String arg0) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
+
 }

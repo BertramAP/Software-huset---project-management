@@ -9,12 +9,12 @@ import io.cucumber.java.en.When;
 public class PersonalActivityTest {
     private Employee employee;
     private String errorMessage;
-
+    /*
     @Given("there is an employee with initials {string}")
     public void there_is_an_employee_with_initials(String initials) {
         employee = new Employee(initials);
     }
-    /*
+
     @When("the employee {string} registers a personal activity {string} from {string} to {string}")
     public void the_employee_registers_a_personal_activity_from_to(String initials, String name, String from, String to) {
         try {
