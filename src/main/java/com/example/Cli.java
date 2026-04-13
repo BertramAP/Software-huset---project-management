@@ -52,6 +52,7 @@ public class Cli {
                 System.out.println("Commands:");
                 System.out.println(" create-project <name>");
                 System.out.println(" assign <projectId> <userId>");
+                return;
             }
 
             case "create-project": {
@@ -66,6 +67,7 @@ public class Cli {
                 if (args.length < 3) throw new IllegalArgumentException("Usage: assign <projectId> <userId>");
 
                 app.assignEmployee(args[1], args[2]);
+                return;
             }
         }
 
