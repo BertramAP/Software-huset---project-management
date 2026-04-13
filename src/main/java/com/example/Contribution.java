@@ -1,13 +1,13 @@
 package com.example;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 public class Contribution {
     private Employee employee;
     private int workTime;
-    private Calendar date;
+    private LocalDate date;
 
-    public Contribution(Employee employee, int workTime, Calendar date) {
+    public Contribution(Employee employee, int workTime, LocalDate date) {
         this.employee = employee;
         this.workTime = workTime;
         this.date = date;
@@ -25,7 +25,7 @@ public class Contribution {
         return employee;
     }
 
-    public Calendar getDate() {
+    public LocalDate getDate() {
         return date;
     }
 }

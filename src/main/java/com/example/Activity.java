@@ -1,19 +1,19 @@
 package com.example;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 
 public class Activity {
     private String ID;
-    private Calendar startDate;
-    private Calendar endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private int budgetHalfHours;
     private HashMap<String, Contribution> contributions;
     private String creatorID;
     private ArrayList<Employee> employees;
 
-    public Activity(String ID, Calendar startDate, Calendar endDate, int budgetHalfHours, String creatorID) {
+    public Activity(String ID, LocalDate startDate, LocalDate endDate, int budgetHalfHours, String creatorID) {
         this.ID = ID;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -48,7 +48,7 @@ public class Activity {
         return c != null ? c.getWorkTime() : 0;
     }
 
-    public Calendar getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 

@@ -1,8 +1,9 @@
 package com.example;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
 
 public class Employee {
     private String ID;
@@ -47,8 +48,9 @@ public class Employee {
     
     public boolean isAvailable(int week, int year) {
         for (Activity a : assignedActivities) {
-            int actWeek = a.getStartDate().get(Calendar.WEEK_OF_YEAR);
-            int actYear = a.getStartDate().get(Calendar.YEAR);
+            WeekFields weekFields = WeekFields.of(Locale.getDefault());
+            int actWeek = a.getStartDate().get(weekFields.weekOfWeekBasedYear());
+            int actYear = a.getStartDate().getYear();
             if (actWeek == week && actYear == year) {
                 return false;
             }
