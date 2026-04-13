@@ -49,4 +49,9 @@ public class Activity {
         Contribution c = contributions.get(id);
         return c != null ? c.getWorkTime() : 0;
     }
+
+    public Calendar getStartDate() {
+        return startDate;
+    }
+
 }

@@ -8,6 +8,7 @@ public class Employee {
     private String ID;
     private List<Project> projects;
     private List<PersonalActivity> personalActivities;
+    private List<Activity> assignedActivities = new ArrayList<>();
 
     public Employee(String ID) {
         this.ID = ID;
@@ -38,8 +39,22 @@ public class Employee {
         return personalActivities.stream().anyMatch(a -> a.getName().equals(name));
     }
 
-    public boolean isAvailable(int week, int year) {
-        return true; // no activities assigned, always available for now
+
+    public void assignToActivity(Activity activity) {
+        assignedActivities.add(activity);
     }
+
+    
+    public boolean isAvailable(int week, int year) {
+        for (Activity a : assignedActivities) {
+            int actWeek = a.getStartDate().get(Calendar.WEEK_OF_YEAR);
+            int actYear = a.getStartDate().get(Calendar.YEAR);
+            if (actWeek == week && actYear == year) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 }
