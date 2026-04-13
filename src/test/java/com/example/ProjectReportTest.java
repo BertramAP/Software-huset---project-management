@@ -20,17 +20,23 @@ public class ProjectReportTest {
         app.createProject(projectName);
     }*/
 
-    @And("the employee {string} is the project leader of the project")
-    public void the_employee_is_the_project_leader_of_the_project(String name) {
-        app.createUser(name);
-        this.project = app.getProject(projectName);
-        this.project.assignProjectLeader(project.getUser(name));
+    // @And("the employee {string} is the project leader of the project")
+    // public void the_employee_is_the_project_leader_of_the_project(String name) {
+    //     app.createUser(name);
+    //     this.project = app.getProject(projectName);
+    //     this.project.assignProjectLeader(project.getUser(name));
+    // }
+
+    // @And("the project has an activity with name {string}")
+    // public void theProjectHasAnActivityWithName(String activityName) {
+    //     this.project.addActivity(new Activity(activityName)); // TODO: Implement activity class
+    // }
+
+    @Given("there is a project with name {string}")
+    public void there_is_a_project_with_name(String name) {
+    this.project = new Project(name);
     }
 
-    @And("the project has an activity with name {string}")
-    public void theProjectHasAnActivityWithName(String activityName) {
-        this.project.addActivity(new Activity(activityName)); // TODO: Implement activity class
-    }
 
     @And("the employee {string} has registered {int} hours on activity {string} on date {string}")
     public void theEmployeeHasRegisteredHoursOnActivityOnDate(String employeeName, int hours, String activityName, String date) {
