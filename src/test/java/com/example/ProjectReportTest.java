@@ -10,7 +10,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class ProjectReportTest {
-    String projectName;
+/*    String projectName;
     Project project;
     App app; // TODO: Init this somehow?
 
@@ -49,5 +49,5 @@ public class ProjectReportTest {
         throw new PendingException();
     }
 
-
+*/
 }

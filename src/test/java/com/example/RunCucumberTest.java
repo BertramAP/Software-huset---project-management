@@ -14,7 +14,7 @@ import static io.cucumber.junit.platform.engine.Constants.SNIPPET_TYPE_PROPERTY_
 @SelectClasspathResource("com/example") // Points to src/test/resources/com/example
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.example") // Points to your step definitions
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, html:target/cucumber-reports.html") // Replaces plugin = {...}
-@ConfigurationParameter(key = SNIPPET_TYPE_PROPERTY_NAME, value = "camelcase") // Forces camelCase snippets
+@ConfigurationParameter(key = SNIPPET_TYPE_PROPERTY_NAME, value = "camelCase") // Forces camelCase snippets
 public class RunCucumberTest {
     // This class must remain empty.
 }
