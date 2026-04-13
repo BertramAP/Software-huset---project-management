@@ -1,4 +1,6 @@
 package com.example;
+import com.example.errors.DuplicateActivitiesIDException;
+
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.List;
@@ -43,7 +45,11 @@ public class Project {
         return false;
     }
     public void addActivity(Activity activity) {
-        activities.add(activity);
+        if(getActivity(activity.getID()) == null) {
+            activities.add(activity);
+        } else {
+            throw new DuplicateActivitiesIDException("Activity already exists");
+        }
 
     }
     public String getID() {
