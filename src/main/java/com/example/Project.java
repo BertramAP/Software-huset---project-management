@@ -1,13 +1,13 @@
 package com.example;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Project {
     private String projectID;
     private Employee projectLeader;
-    private Calendar startDate;
-    private Calendar endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private List<Employee> employees;
     private List<Activity> activities;
 

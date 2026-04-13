@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.example.errors.DuplicateProjectNameException;
 import io.cucumber.java.PendingException;
-import java.util.Calendar;
+import java.time.LocalDate;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -70,9 +70,7 @@ public class EmployeeTest {
 
     @And("the employee {string} is assigned to an activity in week {int} of {int}")
     public void the_employee_is_assigned_to_an_activity_in_week_of(String initials, int week, int year) {
-        Calendar date = Calendar.getInstance();
-        date.set(Calendar.YEAR, year);
-        date.set(Calendar.WEEK_OF_YEAR, week);
+        LocalDate date = LocalDate.now();
         Activity activity = new Activity("test", date, date, 10, initials);
         employee.assignToActivity(activity);
     }
