@@ -14,4 +14,7 @@ public class AppHolder {
     public Employee getCurrentEmployee() {
         return this.currentEmployee;
     }
+    public void setCurrentEmployee(Employee emp) {
+        this.currentEmployee = emp;
+    }
 }

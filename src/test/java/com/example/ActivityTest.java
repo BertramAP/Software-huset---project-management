@@ -18,11 +18,6 @@ public class ActivityTest {
     public ActivityTest(AppHolder appHolder) {
         this.appHolder = appHolder;
     }
-    
-    @Given("there is a project with name {string}")
-    public void there_is_a_project_with_name(String name) {
-        project = new Project(name);
-    }
 
     @And("the project has no project leader")
     public void the_project_has_no_project_leader() {}
@@ -42,13 +37,13 @@ public class ActivityTest {
     public void the_activity_is_added_to_the_project(String name) {
         assertNotNull(project.getActivity(name));
     }
-    
+    /*
     @And("the project has an activity with name {string}")
     public void the_project_has_an_activity_with_name(String name) {
         Activity a = new Activity(name, null, null, 0, "");
         project.addActivity(a);
         this.currentActivity = a;
-    }
+    }*/
 
     @And("the employee {string} is the project leader of the project")
     public void the_employee_is_the_project_leader_of_the_project(String initials) {
@@ -65,11 +60,11 @@ public class ActivityTest {
             errorMessage = e.getMessage();
         }
     }
-
+    /*
     @Then("the error message {string} is given")
     public void the_error_message_is_given(String expected) {
         assertEquals(expected, errorMessage);
-    }
+    }*/
     
     @When("the employee {string} is added to activity {string}")
     public void the_employee_is_added_to_activity(String initials, String activityName) {
