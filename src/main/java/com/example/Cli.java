@@ -51,9 +51,15 @@ public class Cli {
             case "create-project": {
                 if (args.length < 2) throw new IllegalArgumentException("Please specify a name!");
         
-                // currentUser.addProject(new Project(args[1]));
-                System.out.println("Created project " + args[1]);
+                Project project = app.createProject(args[1]);
+                System.out.println("Created project " + args[1] + " with ID " + project.getID());
                 return;
+            }
+
+            case "assign": {
+                if (args.length < 3) throw new IllegalArgumentException("Usage: assign <projectId> <userId>");
+
+                app.assignEmployee(args[1], args[2]);
             }
         }
 
