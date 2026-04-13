@@ -4,11 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.example.errors.DuplicateProjectNameException;
 import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.time.LocalDate;
 
 public class EmployeeTest {
     Employee employee;
@@ -68,7 +71,8 @@ public class EmployeeTest {
 
     @And("the employee {string} is assigned to an activity in week {int} of {int}")
     public void the_employee_is_assigned_to_an_activity_in_week_of(String initials, int week, int year) {
-        LocalDate date = LocalDate.now();
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        LocalDate date = LocalDate.of(year, 6, 1).with(weekFields.weekOfWeekBasedYear(), week);
         Activity activity = new Activity("test", date, date, 10, initials);
         employee.assignToActivity(activity);
     }
@@ -78,5 +82,17 @@ public class EmployeeTest {
     @Then("the error message {string} is given")
     public void theErrorMessageIsGiven(String errorMessage) {
         assertEquals(appHolder.getError().getMessage(), errorMessage);
+    }
+
+    @And("the employee {string} has registered {int} hours on activity {string} under project {string} on date {string}")
+    public void theEmployeeHasRegisteredHoursOnActivityOnDate(String employeeID, int hours, String activityName, String projectName, String date) {
+        // Write code here that turns the phrase above into concrete actions
+
+        Employee employee = new Employee(employeeID); // Create the employee
+        String[] splitString = date.split("-");
+        LocalDate localDate = LocalDate.of(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), Integer.parseInt(splitString[2]));
+        Contribution contribution = new Contribution(employee, hours*2, localDate); // Create the contribution
+
+        appHolder.getApp().getProject(projectName).getActivity(activityName).addContribution(employeeID, contribution);
     }
 }

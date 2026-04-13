@@ -1,17 +1,25 @@
 package com.example;
 
+import io.cucumber.java.PendingException;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.cucumber.java.en_old.Ac;
+
 import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProjectTest {
     Project project;
     AppHolder appHolder;
+    String projectReport;
 
     public ProjectTest(AppHolder appHolder) {
         this.appHolder = appHolder;
     }
-
     @Given("there is a project with name {string}")
     public void thereIsAProjectWithName(String projectName) {
         this.project = appHolder.getApp().createProject(projectName);
@@ -37,5 +45,16 @@ public class ProjectTest {
     public void the_employee_is_the_project_leader_of_the_project(String initials) {
 
         this.project.assignProjectLeader(appHolder.getCurrentEmployee());
+    }
+
+    @When("the project leader requests a project report on project {string}")
+    public void theProjectLeaderRequestsAProjectReport(String projectName) {
+        projectReport = appHolder.getApp().getProject(projectName).generateReport();
+    }
+
+    @Then("the report shows {int} total hours spent on the project")
+    public void theReportShowsTotalHoursSpentOnTheProject(int hours) {
+        String expectedReport = "total time spent: " + hours + " hours";
+        assertEquals(expectedReport, projectReport);
     }
 }

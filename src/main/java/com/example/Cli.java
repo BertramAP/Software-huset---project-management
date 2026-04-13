@@ -6,6 +6,7 @@ import java.util.Scanner;
 import com.example.cli.AbstractCommand;
 import com.example.cli.commands.AssignCommand;
 import com.example.cli.commands.CreateProjectCommand;
+import com.example.cli.commands.CreateUserCommand;
 
 public class Cli {
     private ProjectApp app;
@@ -74,5 +75,6 @@ public class Cli {
         commands.clear();
         commands.add(new AssignCommand(app));
         commands.add(new CreateProjectCommand(app));
+        commands.add(new CreateUserCommand(app));
     }
 }

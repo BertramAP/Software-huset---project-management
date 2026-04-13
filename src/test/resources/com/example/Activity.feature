@@ -11,6 +11,7 @@ Scenario: Create an activity when no project leader is assigned
 
 Scenario: Create an activity with a duplicate name
 	Given there is a project with name "Testing26001"
+	And there is an employee with initials "bap"
 	And the employee "bap" is the project leader of the project
 	And the project has an activity with name "Testing"
 	When the project leader creates an activity with name "Testing"

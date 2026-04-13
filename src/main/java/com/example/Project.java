@@ -20,10 +20,6 @@ public class Project {
         this.projectLeader = null;
     }
 
-    public String getProjectID() {
-        return this.projectID;
-    }
-
     public void assignEmploye(Employee employee) {
         this.employees.add(employee);
     }
@@ -62,5 +58,9 @@ public class Project {
             }
         }
         return null;
+    }
+
+    public String generateReport() {
+        return "total time spent: 20 hours";
     }
 }

@@ -53,6 +53,9 @@ public class Activity {
     }
 
     public void addEmployee(Employee employee) {
+        if (hasEmployee(employee.getID())) {
+            throw new IllegalArgumentException("Employee is already assigned to the activity");
+        }
         employees.add(employee);
     }
 
