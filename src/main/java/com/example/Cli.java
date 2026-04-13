@@ -23,7 +23,7 @@ public class Cli {
             try {
                 this.onCommand(cmd.split(" "));
             } catch (Exception error) {
-                error.printStackTrace();
+                System.out.println(error.getMessage());
             }
         }
         scanner.close();
@@ -48,11 +48,25 @@ public class Cli {
         if (args.length == 0) return;
 
         switch (args[0]) {
+            case "help": {
+                System.out.println("Commands:");
+                System.out.println(" create-project <name>");
+                System.out.println(" assign <projectId> <userId>");
+                return;
+            }
+
             case "create-project": {
                 if (args.length < 2) throw new IllegalArgumentException("Please specify a name!");
         
-                //currentUser.createProject(args[1]);
-                System.out.println("Created project " + args[1]);
+                Project project = app.createProject(args[1]);
+                System.out.println("Created project " + args[1] + " with ID " + project.getID());
+                return;
+            }
+
+            case "assign": {
+                if (args.length < 3) throw new IllegalArgumentException("Usage: assign <projectId> <userId>");
+
+                app.assignEmployee(args[1], args[2]);
                 return;
             }
         }
