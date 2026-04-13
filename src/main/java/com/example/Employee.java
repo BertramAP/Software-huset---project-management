@@ -14,8 +14,7 @@ public class Employee {
         this.personalActivities = new ArrayList<PersonalActivity>();
     }
 
-    public void createProject(String name) {
-        Project project = new Project(name);
+    public void addProject(Project project) {
         projects.add(project);
     }
 

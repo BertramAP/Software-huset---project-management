@@ -1,17 +1,25 @@
 package com.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Hello world!
  *
  */
 public class App
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+    private List<Project> projects;
+
+    public App() {
+        this.projects = new ArrayList<Project>();
     }
 
-    public void createProject(String name) {}
+    public Project createProject(String name) {
+        Project project = new Project(name);
+        projects.add(project);
+        return project;
+    }
 
     public void createUser(String name) {}
 

@@ -8,17 +8,27 @@ import io.cucumber.java.en.When;
 
 public class EmployeeTest {
     Employee employee;
+    AppHolder appHolder;
+    Project project;
+
+    public EmployeeTest(AppHolder appHolder) { // Pico container attempt:
+        this.appHolder = appHolder;
+    }
+
     @Given("there is an employee with initials {string}")
-    public void there_is_an_employee_with_initials(String string) {
+    public void thereIsAnEmployeeWithInitials(String string) {
         // Write code here that turns the phrase above into concrete actions
-        Employee employee = new Employee(string);
+        employee = new Employee(string);
     }
     @When("the employee creates a project with name {string}")
-    public void the_employee_creates_a_project_with_name(String string) {
-        employee.createProject(string);
+    public void theEmployeeCreatesAProjectWithName(String string) {
+        App app = appHolder.getApp();
+        project = app.createProject(string);
+        appHolder.setApp(app);
+        employee.addProject(project);
     }
     @Then("the project is created")
-    public void the_project_is_created() {
+    public void theProjectIsCreated() {
     // Write code here that turns the phrase above into concrete actions
         assertEquals(1, employee.getProjects().size());
     }
