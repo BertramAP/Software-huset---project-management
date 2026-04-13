@@ -1,4 +1,5 @@
 package com.example;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -26,17 +27,19 @@ public class Employee {
         return ID;
     }
 
-    public void registerPersonalActivity(String name, String from, String to) {
-        String[] fromParts = from.split("-");
-        String[] toParts = to.split("-");
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(Integer.parseInt(fromParts[0]), Integer.parseInt(fromParts[1]) - 1, Integer.parseInt(fromParts[2]));
-        Calendar endDate = Calendar.getInstance();
-        endDate.set(Integer.parseInt(toParts[0]), Integer.parseInt(toParts[1]) - 1, Integer.parseInt(toParts[2]));
-        personalActivities.add(new PersonalActivity(name, startDate, endDate));
+    public void addPersonalActivity(String name, String from, String to) {
+        LocalDate start = LocalDate.parse(from);
+        LocalDate end = LocalDate.parse(to);
+        personalActivities.add(new PersonalActivity(name, start, end));
     }
+
 
     public boolean hasPersonalActivity(String name) {
         return personalActivities.stream().anyMatch(a -> a.getName().equals(name));
     }
+
+    public boolean isAvailable(int week, int year) {
+        return true; // no activities assigned, always available for now
+    }
+
 }

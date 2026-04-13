@@ -1,13 +1,13 @@
 package com.example;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 public class PersonalActivity {
     private String name;
-    private Calendar startDate;
-    private Calendar endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
-    public PersonalActivity(String name, Calendar startDate, Calendar endDate) {
+    public PersonalActivity(String name, LocalDate startDate, LocalDate endDate) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -17,19 +17,19 @@ public class PersonalActivity {
         return name;
     }
 
-    public Calendar getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public Calendar getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setStartDate(Calendar startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Calendar endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 }

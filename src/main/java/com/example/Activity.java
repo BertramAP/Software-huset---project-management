@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -10,19 +11,31 @@ public class Activity {
     private int budgetHalfHours;
     private HashMap<String, Contribution> contributions;
     private String creatorID;
+    private ArrayList<Employee> employees;
 
-    public Activity(String ID) {
+    public Activity(String ID, Calendar startDate, Calendar endDate, int budgetHalfHours, String creatorID) {
         this.ID = ID;
-        this.contributions = new HashMap<>();
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.budgetHalfHours = budgetHalfHours;
+        this.contributions = new HashMap<String, Contribution>();
+        this.creatorID = creatorID;
+        this.employees = new ArrayList<>(); 
     }
+
 
     public String getID() {
         return ID;
     }
+    public void addContribution(String employeeID, Contribution contribution) {
+    contributions.put(employeeID, contribution);
+    }   
+
 
     public int getWorkHalfHours() {
-        return budgetHalfHours;
+        return getTimeUsed();
     }
+
 
     public Contribution getContribution(String id) {
         return contributions.get(id);

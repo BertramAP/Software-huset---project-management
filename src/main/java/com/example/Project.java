@@ -9,10 +9,12 @@ public class Project {
     private Calendar startDate;
     private Calendar endDate;
     private List<Employee> employees;
+    private List<Activity> activities;
 
     public Project(String name) {
         this.projectID = name;
         this.employees = new ArrayList<Employee>();
+        this.activities = new ArrayList<Activity>();
         this.projectLeader = null;
     }
     public void assignEmploye(Employee employee) {
@@ -35,8 +37,8 @@ public class Project {
         }
         return false;
     }
-
-    public Employee getUser(String name) { return null; }
-
-    public void addActivity(Activity activity) {}
+    public Activity addActivity(Activity activity) {
+        activities.add(activity);
+        return activity;
+    }
 }
