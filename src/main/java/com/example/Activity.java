@@ -40,7 +40,7 @@ public class Activity {
     }
 
     public int getTimeUsed() {
-        return contributions.values().stream().mapToInt(c -> c.getWorkTime()).sum();
+        return contributions.values().stream().mapToInt(Contribution::getWorkTime).sum();
     }
 
     public int getTimeUsed(String id) {
