@@ -3,7 +3,6 @@ package com.example;
 import java.util.Scanner;
 
 public class Cli {
-    private App wokeApp;
     private ProjectApp app;
     private Employee currentUser;
 
@@ -52,7 +51,7 @@ public class Cli {
             case "create-project": {
                 if (args.length < 2) throw new IllegalArgumentException("Please specify a name!");
         
-                wokeApp.createProject(args[1]);
+                // currentUser.addProject(new Project(args[1]));
                 System.out.println("Created project " + args[1]);
                 return;
             }
