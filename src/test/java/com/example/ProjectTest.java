@@ -57,4 +57,14 @@ public class ProjectTest {
         String expectedReport = "total time spent: " + hours + " hours";
         assertEquals(expectedReport, projectReport);
     }
+
+    @When("the project leader requests time used on activity {string} on project {string}")
+    public void theProjectLeaderRequestsTimeUsedOnActivity(String activityID, String projectID) {
+        try {
+            System.out.println(appHolder.getApp().getProject(projectID).getActivity(activityID));
+            appHolder.getApp().getProject(projectID).getActivity(activityID).getTimeUsed();
+        } catch (Exception e) {
+            appHolder.setError(new Exception("Activity does not exist"));
+        }
+    }
 }

@@ -13,6 +13,5 @@ Scenario: View total time spent on project
 Scenario: View report for non-existing activity
 	Given there is a project with name "Testing26001"
 	And the employee "bap" is the project leader of the project
-	And the project has an activity with name "Testing"
-	When ½the project leader requests time used on activity "Testing"
+	When the project leader requests time used on activity "Testing" on project "Testing26001"
 	Then the error message "Activity does not exist" is given
