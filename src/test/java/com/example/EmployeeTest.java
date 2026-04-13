@@ -2,6 +2,10 @@ package com.example;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.example.errors.DuplicateProjectNameException;
+import io.cucumber.java.PendingException;
+import java.util.Calendar;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,6 +15,7 @@ public class EmployeeTest {
     Employee employee;
     AppHolder appHolder;
     Project project;
+    Exception errorHolder;
 
     public EmployeeTest(AppHolder appHolder) { // Pico container attempt:
         this.appHolder = appHolder;
@@ -24,7 +29,12 @@ public class EmployeeTest {
     @When("the employee creates a project with name {string}")
     public void theEmployeeCreatesAProjectWithName(String string) {
         App app = appHolder.getApp();
-        project = app.createProject(string);
+        // Catch the error and save it to be used in other step
+        try {
+            project = app.createProject(string);
+        } catch (DuplicateProjectNameException e) {
+            errorHolder = e;
+        }
         appHolder.setApp(app);
         employee.addProject(project);
     }
@@ -53,5 +63,24 @@ public class EmployeeTest {
         assertTrue(employee.isAvailable(checkedWeek, checkedYear));
     }
 
+    @Then("the employee {string} is not listed as available")
+    public void the_employee_is_not_listed_as_available(String initials) {
+        assertFalse(employee.isAvailable(checkedWeek, checkedYear));
+    }
 
+    @And("the employee {string} is assigned to an activity in week {int} of {int}")
+    public void the_employee_is_assigned_to_an_activity_in_week_of(String initials, int week, int year) {
+        Calendar date = Calendar.getInstance();
+        date.set(Calendar.YEAR, year);
+        date.set(Calendar.WEEK_OF_YEAR, week);
+        Activity activity = new Activity("test", date, date, 10, initials);
+        employee.assignToActivity(activity);
+    }
+
+
+
+    @Then("the error message {string} is given")
+    public void theErrorMessageIsGiven(String errorMessage) {
+        assertEquals(errorHolder.getMessage(), errorMessage);
+    }
 }

@@ -20,22 +20,20 @@ public class Activity {
         this.budgetHalfHours = budgetHalfHours;
         this.contributions = new HashMap<String, Contribution>();
         this.creatorID = creatorID;
-        this.employees = new ArrayList<>(); 
+        this.employees = new ArrayList<>();
     }
-
 
     public String getID() {
         return ID;
     }
-    public void addContribution(String employeeID, Contribution contribution) {
-    contributions.put(employeeID, contribution);
-    }   
 
+    public void addContribution(String employeeID, Contribution contribution) {
+        contributions.put(employeeID, contribution);
+    }
 
     public int getWorkHalfHours() {
         return getTimeUsed();
     }
-
 
     public Contribution getContribution(String id) {
         return contributions.get(id);
@@ -48,5 +46,22 @@ public class Activity {
     public int getTimeUsed(String id) {
         Contribution c = contributions.get(id);
         return c != null ? c.getWorkTime() : 0;
+    }
+
+    public Calendar getStartDate() {
+        return startDate;
+    }
+
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+
+    public boolean hasEmployee(String employeeID) {
+        for (Employee e : employees) {
+            if (e.getID().equals(employeeID)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

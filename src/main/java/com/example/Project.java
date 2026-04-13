@@ -17,6 +17,11 @@ public class Project {
         this.activities = new ArrayList<Activity>();
         this.projectLeader = null;
     }
+
+    public String getProjectID() {
+        return this.projectID;
+    }
+
     public void assignEmploye(Employee employee) {
         this.employees.add(employee);
     }
@@ -37,8 +42,19 @@ public class Project {
         }
         return false;
     }
-    public Activity addActivity(Activity activity) {
+    public void addActivity(Activity activity) {
         activities.add(activity);
-        return activity;
+
+    }
+    public String getID() {
+        return projectID;
+    }
+    public Activity getActivity(String ID) {
+        for (Activity a : activities) {
+            if (a.getID().equals(ID)) {
+                return a;
+            }
+        }
+        return null;
     }
 }

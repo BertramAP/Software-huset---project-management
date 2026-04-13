@@ -2,6 +2,7 @@ package com.example;
 
 public class AppHolder {
     private App app = new App();
+    private Employee currentEmployee;
 
     public AppHolder() {}
     public App getApp() {
@@ -9,5 +10,8 @@ public class AppHolder {
     }
     public void setApp(App app) {
         this.app = app;
+    }
+    public Employee getCurrentEmployee() {
+        return this.currentEmployee;
     }
 }
