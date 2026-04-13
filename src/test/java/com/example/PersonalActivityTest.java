@@ -14,7 +14,7 @@ public class PersonalActivityTest {
     @When("the employee {string} registers a personal activity {string} from {string} to {string}")
     public void the_employee_registers_a_personal_activity_from_to(String initials, String name, String from, String to) {
         try {
-            employee.registerPersonalActivity(name, from, to);
+            employee.addPersonalActivity(name, from, to);
         } catch (Exception e) {
             errorMessage = e.getMessage();
         }
