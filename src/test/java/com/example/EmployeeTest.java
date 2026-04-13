@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.example.errors.DuplicateProjectNameException;
 import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -68,7 +70,8 @@ public class EmployeeTest {
 
     @And("the employee {string} is assigned to an activity in week {int} of {int}")
     public void the_employee_is_assigned_to_an_activity_in_week_of(String initials, int week, int year) {
-        LocalDate date = LocalDate.now();
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        LocalDate date = LocalDate.of(year, 6, 1).with(weekFields.weekOfWeekBasedYear(), week);
         Activity activity = new Activity("test", date, date, 10, initials);
         employee.assignToActivity(activity);
     }
