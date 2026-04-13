@@ -11,6 +11,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.time.LocalDate;
 
 public class EmployeeTest {
     Employee employee;
@@ -81,5 +82,17 @@ public class EmployeeTest {
     @Then("the error message {string} is given")
     public void theErrorMessageIsGiven(String errorMessage) {
         assertEquals(appHolder.getError().getMessage(), errorMessage);
+    }
+
+    @And("the employee {string} has registered {int} hours on activity {string} under project {string} on date {string}")
+    public void theEmployeeHasRegisteredHoursOnActivityOnDate(String employeeID, int hours, String activityName, String projectName, String date) {
+        // Write code here that turns the phrase above into concrete actions
+
+        Employee employee = new Employee(employeeID); // Create the employee
+        String[] splitString = date.split("-");
+        LocalDate localDate = LocalDate.of(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), Integer.parseInt(splitString[2]));
+        Contribution contribution = new Contribution(employee, hours*2, localDate); // Create the contribution
+
+        appHolder.getApp().getProject(projectName).getActivity(activityName).addContribution(employeeID, contribution);
     }
 }

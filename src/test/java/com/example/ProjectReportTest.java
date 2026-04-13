@@ -1,16 +1,20 @@
 package com.example;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class ProjectReportTest {
-/*
+    AppHolder appHolder;
+
+    public ProjectReportTest(AppHolder appHolder) {
+        this.appHolder = appHolder;
+    }
+
+    /*
     String projectName;
     Project project;
     App app; // TODO: Init this somehow
@@ -49,6 +53,5 @@ public class ProjectReportTest {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
-
-*/
+    */
 }

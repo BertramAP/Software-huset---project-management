@@ -19,7 +19,7 @@ public class App
 
     private Boolean doesProjectExist(String name) {
         for (Project project: this.projects) {
-            if (project.getProjectID().equals(name)) return true;
+            if (project.getID().equals(name)) return true;
         }
         return false;
     }
@@ -35,5 +35,10 @@ public class App
 
     public void createUser(String name) {}
 
-    public Project getProject(String name) { return null; }
+    public Project getProject(String name) {
+        for (Project project: projects) {
+            if (project.getID().equals(name)) return project;
+        }
+        return null;
+    }
 }
