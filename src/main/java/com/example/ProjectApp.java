@@ -1,13 +1,13 @@
 package com.example;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.naming.NameNotFoundException;
 
 import com.example.errors.DuplicateProjectNameException;
 
 public class ProjectApp {
+    private List<Activity> activities = new ArrayList<>();
     private List<Employee> employees = new ArrayList<>();
     private List<Project> projects = new ArrayList<>();
 
@@ -54,6 +54,16 @@ public class ProjectApp {
 
         // employees.remo
         return null;
+    }
+
+    public Activity createActivity(String projectId, String id, LocalDate startDate, LocalDate endDate, int budgetHalfHours, String creatorID) {
+        Project project = getProject(projectId);
+        if (project == null) throw new IllegalArgumentException("Project does not exist");
+
+        if (project.getActivity(id) != null) throw new IllegalArgumentException("Activity already exists!");
+        Activity activity = new Activity(id, startDate, endDate, budgetHalfHours, creatorID);
+        project.addActivity(activity);
+        return activity;
     }
 
     public void assignEmployee(String projectId, String employeeId) {

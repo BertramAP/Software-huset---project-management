@@ -62,7 +62,7 @@ public class Report {
         System.out.println(centered);
     }
 
-    void printReport() {
+    public void printReport() {
         String titleString = "Project title: " + getTitle(); // Compiler bitches if you use this.title directly
         String hoursString = "Total hours registrered: " + getHours();
         String employeeCountString = "Employee Count: " + getEmployeeCount();

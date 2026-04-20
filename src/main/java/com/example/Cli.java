@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 import com.example.cli.AbstractCommand;
 import com.example.cli.commands.AssignCommand;
+import com.example.cli.commands.CreateActivityCommand;
 import com.example.cli.commands.CreateProjectCommand;
 import com.example.cli.commands.CreateUserCommand;
+import com.example.cli.commands.ReportCommand;
 
 public class Cli {
     private ProjectApp app;
@@ -73,8 +75,14 @@ public class Cli {
     public void setApp(ProjectApp app) {
         this.app = app;
         commands.clear();
-        commands.add(new AssignCommand(app));
-        commands.add(new CreateProjectCommand(app));
-        commands.add(new CreateUserCommand(app));
+        commands.add(new AssignCommand(app, this));
+        commands.add(new CreateActivityCommand(app, this));
+        commands.add(new CreateProjectCommand(app, this));
+        commands.add(new CreateUserCommand(app, this));
+        commands.add(new ReportCommand(app, this));
+    }
+
+    public Employee getCurrentUser() {
+        return currentUser;
     }
 }
