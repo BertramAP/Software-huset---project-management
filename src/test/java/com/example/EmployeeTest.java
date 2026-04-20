@@ -30,7 +30,7 @@ public class EmployeeTest {
 
     @When("the employee creates a project with name {string}")
     public void theEmployeeCreatesAProjectWithName(String string) {
-        ProjectApp app = appHolder.getApp();
+        App app = appHolder.getApp();
         try {
             project = app.createProject(string);
         } catch (DuplicateProjectNameException e) {
@@ -95,25 +95,63 @@ public class EmployeeTest {
 
         appHolder.getApp().getProject(projectName).getActivity(activityName).addContribution(employeeID, contribution);
     }
-    @Given("the employee {string} has registered {int} hours on activity {string} on date {string}")
-    public void theEmployeeHasRegisteredHoursOnActivityOnDate(String string, Integer int1, String string2, String string3) {
-        // Write code here that turns the phrase above into concrete actions
-        Employee emp = appHolder.getApp().createUser(string);
-        Activity activity = appHolder.getCurrentProject().getActivity(string2);
-        String[] splitString = string3.split("-");
-        LocalDate localDate = LocalDate.of(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), Integer.parseInt(splitString[2]));
-        Contribution contribution = new Contribution(emp, int1, localDate);
-        activity.addContribution(emp.getID(), contribution);
-    }
-    @Given("the employee {string} changes the registered hours to {int} on activity {string} on date {string}")
-    public void theEmployeeChangesTheRegisteredHoursToOnActivityOnDate(String string, Integer int1, String string2, String string3) {
-        // Write code here that turns the phrase above into concrete actions
-        Employee emp = appHolder.getApp().createUser(string);
-        Activity activity = appHolder.getCurrentProject().getActivity(string2);
 
-        String[] splitString = string3.split("-");
-        LocalDate localDate = LocalDate.of(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), Integer.parseInt(splitString[2]));
+    @And("the employee {string} has registered {int} hours on activity {string} on date {string}")
+    public void theEmployeeHasRegisteredHoursOnActivityOnDate(
+            String employeeID, int hours, String activityName, String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        Project project = appHolder.getCurrentProject();
 
+        Activity activity = project.getActivity(activityName);
+        if (activity == null) {
+            activity = new Activity(activityName, localDate, localDate, hours * 2, employeeID);
+            project.addActivity(activity);
+        }
+
+        Employee employee = appHolder.getCurrentEmployee();
+        activity.addContribution(employeeID, new Contribution(employee, hours * 2, localDate));
     }
+
+    private int totalRegisteredHours;
+
+    @When("the employee {string} views registered hours for date {string}")
+    public void theEmployeeViewsRegisteredHoursForDate(String employeeID, String date) {
+        LocalDate target = LocalDate.parse(date);
+        totalRegisteredHours = 0;
+        for (Project p : appHolder.getApp().getProjects())
+            for (Activity a : p.getActivities()) {
+                Contribution c = a.getContribution(employeeID);
+                if (c != null && c.getDate().equals(target))
+                    totalRegisteredHours += c.getWorkTime() / 2;
+            }
+    }
+
+    @Then("the total registered hours are {int}")
+    public void theTotalRegisteredHoursAre(int expected) {
+        assertEquals(expected, totalRegisteredHours);
+    }
+
+    @And("the employee {string} changes the registered hours to {int} on activity {string} on date {string}")
+    public void theEmployeeChangesTheRegisteredHoursToOnActivityOnDate(String employeeID, int hours, String activityName, String date) {
+        appHolder.getCurrentProject().getActivity(activityName).getContribution(employeeID).updateTime(hours * 2);
+    }
+
+    @Then("{int} hours are registered for employee {string} on activity {string} on date {string}")
+    public void hoursAreRegisteredForEmployeeOnActivityOnDate(int hours, String employeeID, String activityName, String date) {
+        assertEquals(hours * 2, appHolder.getCurrentProject().getActivity(activityName).getTimeUsed(employeeID));
+    }
+
+    @When("the employee {string} registers {int} hours on activity {string} on date {string}")
+    public void theEmployeeRegistersHoursOnActivityOnDate(String employeeID, int hours, String activityName, String date) {
+        try {
+            appHolder.getCurrentProject().getActivity(activityName).addContribution(
+                    employeeID,
+                    new Contribution(appHolder.getCurrentEmployee(), hours * 2, LocalDate.parse(date)));
+        } catch (Exception e) {
+            appHolder.setError(e);
+            }
+    }
+
+
 
 }

@@ -78,4 +78,8 @@ public class Project {
     public int getTimeUsed(String activityID) {
         return getActivity(activityID).getTimeUsed();
     }
+
+    public List<Activity> getActivities() {
+        return activities;
+    }
 }

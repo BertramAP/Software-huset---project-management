@@ -8,10 +8,12 @@ public class Contribution {
     private LocalDate date;
 
     public Contribution(Employee employee, int workTime, LocalDate date) {
+        if (workTime < 0) throw new IllegalArgumentException("Hours must be positive");
         this.employee = employee;
         this.workTime = workTime;
         this.date = date;
     }
+
 
     public int getWorkTime() {
         return workTime;
@@ -28,4 +30,5 @@ public class Contribution {
     public LocalDate getDate() {
         return date;
     }
+
 }
