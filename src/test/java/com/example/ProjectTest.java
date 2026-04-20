@@ -11,6 +11,7 @@ import io.cucumber.java.en_old.Ac;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ProjectTest {
     Project project;
@@ -41,6 +42,20 @@ public class ProjectTest {
         this.project.addActivity(new Activity(name, startDate, end, 20, ""));
     }
 
+
+    @When("the employee {string} is removed from the project")
+    public void theEmployeeIsRemovedFromTheProject(String initials) {
+        try {
+            appHolder.getCurrentProject().removeEmployee(initials);
+        } catch (Exception e) {
+            appHolder.setError(e);
+        }
+    }
+
+    @Then("the employee {string} is no longer assigned to the project")
+    public void theEmployeeIsNoLongerAssignedToTheProject(String initials) {
+        assertFalse(appHolder.getCurrentProject().hasEmployee(initials));
+    }
 
     @When("the project leader requests a project report on project {string}")
     public void theProjectLeaderRequestsAProjectReport(String projectName) {
