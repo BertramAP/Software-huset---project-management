@@ -131,5 +131,27 @@ public class EmployeeTest {
         assertEquals(expected, totalRegisteredHours);
     }
 
+    @And("the employee {string} changes the registered hours to {int} on activity {string} on date {string}")
+    public void theEmployeeChangesTheRegisteredHoursToOnActivityOnDate(String employeeID, int hours, String activityName, String date) {
+        appHolder.getCurrentProject().getActivity(activityName).getContribution(employeeID).updateTime(hours * 2);
+    }
+
+    @Then("{int} hours are registered for employee {string} on activity {string} on date {string}")
+    public void hoursAreRegisteredForEmployeeOnActivityOnDate(int hours, String employeeID, String activityName, String date) {
+        assertEquals(hours * 2, appHolder.getCurrentProject().getActivity(activityName).getTimeUsed(employeeID));
+    }
+
+    @When("the employee {string} registers {int} hours on activity {string} on date {string}")
+    public void theEmployeeRegistersHoursOnActivityOnDate(String employeeID, int hours, String activityName, String date) {
+        try {
+            appHolder.getCurrentProject().getActivity(activityName).addContribution(
+                    employeeID,
+                    new Contribution(appHolder.getCurrentEmployee(), hours * 2, LocalDate.parse(date)));
+        } catch (Exception e) {
+            appHolder.setError(e);
+            }
+    }
+
+
 
 }
