@@ -94,7 +94,7 @@ public class EmployeeTest {
         LocalDate localDate = LocalDate.of(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), Integer.parseInt(splitString[2]));
         Contribution contribution = new Contribution(new Employee(employeeID), hours*2, localDate); // Create the contribution
         Activity activity = appHolder.getApp().getProject(projectName).getActivity(activityName);
-        appHolder.getApp().getProject(projectName).getActivity(activityName).addContribution(employeeID, contribution);
+        appHolder.getApp().getProject(projectName).getActivity(activityName).addContribution(contribution);
 
         appHolder.getApp().getUser(employeeID).assignToActivity(activity);
     }
@@ -107,7 +107,7 @@ public class EmployeeTest {
             appHolder.getCurrentProject().addActivity(new Activity(activityName, localDate, localDate, hours * 2, employeeID));
         }
         appHolder.getApp().getUser(employeeID).assignToActivity(appHolder.getCurrentProject().getActivity(activityName));
-        appHolder.getCurrentProject().getActivity(activityName).addContribution(employeeID, new Contribution(employee, hours * 2, localDate));
+        appHolder.getCurrentProject().getActivity(activityName).addContribution(new Contribution(employee, hours * 2, localDate));
     }
 
     private int totalRegisteredHours;
@@ -140,7 +140,6 @@ public class EmployeeTest {
     public void theEmployeeRegistersHoursOnActivityOnDate(String employeeID, int hours, String activityName, String date) {
         try {
             appHolder.getCurrentProject().getActivity(activityName).addContribution(
-                    employeeID,
                     new Contribution(appHolder.getCurrentEmployee(), hours * 2, LocalDate.parse(date)));
         } catch (Exception e) {
             appHolder.setError(e);

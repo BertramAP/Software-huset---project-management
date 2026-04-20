@@ -8,6 +8,7 @@ import com.example.cli.commands.AssignCommand;
 import com.example.cli.commands.CreateActivityCommand;
 import com.example.cli.commands.CreateProjectCommand;
 import com.example.cli.commands.CreateUserCommand;
+import com.example.cli.commands.RegisterTimeCommand;
 import com.example.cli.commands.ReportCommand;
 
 public class Cli {
@@ -79,6 +80,7 @@ public class Cli {
         commands.add(new CreateActivityCommand(app, this));
         commands.add(new CreateProjectCommand(app, this));
         commands.add(new CreateUserCommand(app, this));
+        commands.add(new RegisterTimeCommand(app, this));
         commands.add(new ReportCommand(app, this));
     }
 

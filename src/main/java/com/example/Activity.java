@@ -28,14 +28,15 @@ public class Activity {
         return ID;
     }
 
-    public void addContribution(String employeeID, Contribution contribution) {
-        List<Contribution> employeeContributions = contributions.get(employeeID);
+    public void addContribution(Contribution contribution) {
+        String employeeId = contribution.getEmployee().getID();
+        List<Contribution> employeeContributions = contributions.get(employeeId);
 
-        if(employeeContributions == null) {
+        if (employeeContributions == null) {
             employeeContributions = new ArrayList<Contribution>();
-            contributions.put(employeeID, employeeContributions);
+            contributions.put(employeeId, employeeContributions);
         }
-        contributions.get(employeeID).add(contribution);
+        contributions.get(employeeId).add(contribution);
 
     }
 
