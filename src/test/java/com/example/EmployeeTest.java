@@ -95,4 +95,41 @@ public class EmployeeTest {
 
         appHolder.getApp().getProject(projectName).getActivity(activityName).addContribution(employeeID, contribution);
     }
+
+    @And("the employee {string} has registered {int} hours on activity {string} on date {string}")
+    public void theEmployeeHasRegisteredHoursOnActivityOnDate(
+            String employeeID, int hours, String activityName, String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        Project project = appHolder.getCurrentProject();
+
+        Activity activity = project.getActivity(activityName);
+        if (activity == null) {
+            activity = new Activity(activityName, localDate, localDate, hours * 2, employeeID);
+            project.addActivity(activity);
+        }
+
+        Employee employee = appHolder.getCurrentEmployee();
+        activity.addContribution(employeeID, new Contribution(employee, hours * 2, localDate));
+    }
+
+    private int totalRegisteredHours;
+
+    @When("the employee {string} views registered hours for date {string}")
+    public void theEmployeeViewsRegisteredHoursForDate(String employeeID, String date) {
+        LocalDate target = LocalDate.parse(date);
+        totalRegisteredHours = 0;
+        for (Project p : appHolder.getApp().getProjects())
+            for (Activity a : p.getActivities()) {
+                Contribution c = a.getContribution(employeeID);
+                if (c != null && c.getDate().equals(target))
+                    totalRegisteredHours += c.getWorkTime() / 2;
+            }
+    }
+
+    @Then("the total registered hours are {int}")
+    public void theTotalRegisteredHoursAre(int expected) {
+        assertEquals(expected, totalRegisteredHours);
+    }
+
+
 }

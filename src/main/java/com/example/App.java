@@ -41,4 +41,8 @@ public class App
         }
         return null;
     }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
 }
