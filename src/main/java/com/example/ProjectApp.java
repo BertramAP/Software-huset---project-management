@@ -59,4 +59,22 @@ public class ProjectApp {
 
         project.assignEmploye(user);
     }
+    public List<Project> getProjects() {return projects;}
+    public boolean deleteUser(String UserID) {
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getID().equals(UserID)) {
+                employees.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean assignToActivity(String projectID, String activtyID, Employee emp) {
+        try {
+            getProject(projectID).getActivity(activtyID).addEmployee(emp);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -57,6 +57,17 @@ public class Employee {
         }
         return true;
     }
+    public Project getProject(String name) {
+        for (Project p : projects) {
+            if (p.getID().equals(name)) return p;
+        }
+
+        return null;
+    }
+
+    public void addContribution(String projectID, String activityID, Contribution contribution) {
+        getProject(projectID).getActivity(activityID).addContribution(this.getID(), contribution);
+    }
 
 
 }

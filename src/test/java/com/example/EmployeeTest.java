@@ -30,7 +30,7 @@ public class EmployeeTest {
 
     @When("the employee creates a project with name {string}")
     public void theEmployeeCreatesAProjectWithName(String string) {
-        App app = appHolder.getApp();
+        ProjectApp app = appHolder.getApp();
         try {
             project = app.createProject(string);
         } catch (DuplicateProjectNameException e) {
@@ -151,7 +151,5 @@ public class EmployeeTest {
             appHolder.setError(e);
             }
     }
-
-
 
 }

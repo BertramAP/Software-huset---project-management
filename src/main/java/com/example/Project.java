@@ -82,4 +82,13 @@ public class Project {
     public List<Activity> getActivities() {
         return activities;
     }
+
+    public boolean assignToActivity(String activityID, Employee emp) {
+        try {
+            getActivity(activityID).addEmployee(emp);
+        } catch (Exception e) {
+            return false;
+        }
+    return true;
+    }
 }

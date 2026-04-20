@@ -15,4 +15,4 @@ Scenario: Create an activity with a duplicate name
 	And the employee "bap" is the project leader of the project
 	And the project has an activity with name "Testing"
 	When the project leader creates an activity with name "Testing"
-	Then the error message "Activity already exists" is given
+	Then the error message "Activity already exist	s" is given
