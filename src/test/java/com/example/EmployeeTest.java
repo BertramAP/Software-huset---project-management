@@ -30,7 +30,7 @@ public class EmployeeTest {
 
     @When("the employee creates a project with name {string}")
     public void theEmployeeCreatesAProjectWithName(String string) {
-        App app = appHolder.getApp();
+        ProjectApp app = appHolder.getApp();
         try {
             project = app.createProject(string);
         } catch (DuplicateProjectNameException e) {
@@ -95,4 +95,25 @@ public class EmployeeTest {
 
         appHolder.getApp().getProject(projectName).getActivity(activityName).addContribution(employeeID, contribution);
     }
+    @Given("the employee {string} has registered {int} hours on activity {string} on date {string}")
+    public void theEmployeeHasRegisteredHoursOnActivityOnDate(String string, Integer int1, String string2, String string3) {
+        // Write code here that turns the phrase above into concrete actions
+        Employee emp = appHolder.getApp().createUser(string);
+        Activity activity = appHolder.getCurrentProject().getActivity(string2);
+        String[] splitString = string3.split("-");
+        LocalDate localDate = LocalDate.of(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), Integer.parseInt(splitString[2]));
+        Contribution contribution = new Contribution(emp, int1, localDate);
+        activity.addContribution(emp.getID(), contribution);
+    }
+    @Given("the employee {string} changes the registered hours to {int} on activity {string} on date {string}")
+    public void theEmployeeChangesTheRegisteredHoursToOnActivityOnDate(String string, Integer int1, String string2, String string3) {
+        // Write code here that turns the phrase above into concrete actions
+        Employee emp = appHolder.getApp().createUser(string);
+        Activity activity = appHolder.getCurrentProject().getActivity(string2);
+
+        String[] splitString = string3.split("-");
+        LocalDate localDate = LocalDate.of(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), Integer.parseInt(splitString[2]));
+
+    }
+
 }
