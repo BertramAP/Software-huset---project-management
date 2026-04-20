@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class ProjectTest {
     Project project;
     AppHolder appHolder;
-    String projectReport;
+    Report projectReport;
 
     public ProjectTest(AppHolder appHolder) {
         this.appHolder = appHolder;
@@ -64,8 +64,7 @@ public class ProjectTest {
 
     @Then("the report shows {string} total hours spent on the project")
     public void theReportShowsTotalHoursSpentOnTheProject(String hours) {
-        String expectedReport = "total time spent: " + hours + " hours";
-        assertEquals(expectedReport, projectReport);
+        assertEquals(hours, projectReport.getHours());
     }
     @Then("the employee {string} is the project leader of the project")
     public void theEmployeeIsTheProjectLeaderOfTheProject(String initials) {
@@ -94,4 +93,8 @@ public class ProjectTest {
         }
     }
 
+    @Then("test the report printing")
+    public void testTheReportPrinting() {
+        projectReport.printReport();
+    }
 }

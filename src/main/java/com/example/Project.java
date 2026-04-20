@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Project {
-    private String projectID;
+    private final String projectID;
     private Employee projectLeader;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -67,13 +67,10 @@ public class Project {
         return null;
     }
 
-
-    public String generateReport() {
-        int totalHalfHours = getTimeUsed();
-        String hours = Double.toString(totalHalfHours / 2.);
-        if (hours.endsWith(".0")) hours = hours.substring(0, hours.length()-2);
-        return "total time spent: " + hours + " hours";
+    public Report generateReport() {
+        return new Report(this); // Give current project to the report
     }
+
     public int getTimeUsed() {
         int time = 0;
         for(Activity a: activities) {
