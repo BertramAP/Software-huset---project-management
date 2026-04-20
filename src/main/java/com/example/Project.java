@@ -30,14 +30,18 @@ public class Project {
         this.projectLeader = employee;
     }
 
-    public boolean removeEmployee(String ID) {
+    public void removeEmployee(String ID) {
         for (int i = 0; i < this.employees.size(); i++) {
-            if(employees.get(i).getID().equals(ID)) {
+            if (employees.get(i).getID().equals(ID)) {
                 employees.remove(i);
-                return true;
+                return;
             }
         }
-        return false;
+        throw new IllegalArgumentException("Employee is not assigned to the project");
+    }
+
+    public boolean hasEmployee(String ID) {
+        return employees.stream().anyMatch(e -> e.getID().equals(ID));
     }
     public void addActivity(Activity activity) {
         if(getActivity(activity.getID()) == null) {
