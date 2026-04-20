@@ -23,12 +23,11 @@ public class Project {
     public void assignEmploye(Employee employee) {
         this.employees.add(employee);
     }
-    public boolean assignProjectLeader(Employee employee) {
-        if (this.projectLeader == null) {
-            this.projectLeader = employee;
-            return true;
+    public void assignProjectLeader(Employee employee) {
+        if (this.projectLeader != null) {
+            throw new IllegalStateException("Project already has a project leader");
         }
-        return false;
+        this.projectLeader = employee;
     }
 
     public boolean removeEmployee(String ID) {
@@ -50,6 +49,10 @@ public class Project {
     }
     public String getID() {
         return projectID;
+    }
+
+    public Employee getProjectLeader() {
+        return projectLeader;
     }
     public Activity getActivity(String ID) {
         for (Activity a : activities) {

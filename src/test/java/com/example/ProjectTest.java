@@ -41,11 +41,6 @@ public class ProjectTest {
         this.project.addActivity(new Activity(name, startDate, end, 20, ""));
     }
 
-    @And("the employee {string} is the project leader of the project")
-    public void the_employee_is_the_project_leader_of_the_project(String initials) {
-
-        this.project.assignProjectLeader(appHolder.getCurrentEmployee());
-    }
 
     @When("the project leader requests a project report on project {string}")
     public void theProjectLeaderRequestsAProjectReport(String projectName) {
@@ -57,10 +52,22 @@ public class ProjectTest {
         String expectedReport = "total time spent: " + hours + " hours";
         assertEquals(expectedReport, projectReport);
     }
+    @Then("the employee {string} is the project leader of the project")
+    public void theEmployeeIsTheProjectLeaderOfTheProject(String initials) {
+        if (appHolder.getCurrentProject().getProjectLeader() == null) {
+            appHolder.getCurrentProject().assignProjectLeader(appHolder.getCurrentEmployee());
+        } else {
+            assertEquals(initials, appHolder.getCurrentProject().getProjectLeader().getID());
+        }
+    }
+
     @When("the employee {string} is assigned as project leader")
     public void theEmployeeIsAssignedAsProjectLeader(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        appHolder.getCurrentProject().assignProjectLeader(appHolder.getCurrentEmployee());
+        try {
+            appHolder.getCurrentProject().assignProjectLeader(appHolder.getCurrentEmployee());
+        } catch (Exception e) {
+            appHolder.setError(e);
+        }
     }
     @When("the project leader requests time used on activity {string} on project {string}")
     public void theProjectLeaderRequestsTimeUsedOnActivity(String activityID, String projectID) {
