@@ -1,13 +1,14 @@
 package com.example.cli.commands;
 
+import com.example.Cli;
 import com.example.Project;
 import com.example.ProjectApp;
 import com.example.cli.AbstractCommand;
 
 public class CreateProjectCommand extends AbstractCommand {
 
-    public CreateProjectCommand(ProjectApp app) {
-        super(app);
+    public CreateProjectCommand(ProjectApp app, Cli cli) {
+        super(app, cli);
     }
 
     @Override

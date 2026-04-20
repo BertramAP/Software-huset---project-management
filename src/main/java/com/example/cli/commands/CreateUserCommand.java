@@ -1,5 +1,6 @@
 package com.example.cli.commands;
 
+import com.example.Cli;
 import com.example.Employee;
 import com.example.Project;
 import com.example.ProjectApp;
@@ -7,8 +8,8 @@ import com.example.cli.AbstractCommand;
 
 public class CreateUserCommand extends AbstractCommand {
 
-    public CreateUserCommand(ProjectApp app) {
-        super(app);
+    public CreateUserCommand(ProjectApp app, Cli cli) {
+        super(app, cli);
     }
 
     @Override
