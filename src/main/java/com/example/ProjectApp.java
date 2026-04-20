@@ -36,6 +36,12 @@ public class ProjectApp {
     }
 
     public Employee createUser(String name) {
+        boolean userExists = employees.stream().anyMatch(e -> e.getID().equals(name));
+
+        if(userExists) {
+            return null;
+        }
+
         Employee user = new Employee(name);
         employees.add(user);
         return user;

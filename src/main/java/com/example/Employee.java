@@ -82,5 +82,20 @@ public class Employee {
         }
         return false;
     }
+    public int viewHours(LocalDate date) {
+        int totalRegisteredHours = 0;
+        for (Activity a : assignedActivities) {
+            List<Contribution> contributions = a.getContributions(this.ID);
+            if(contributions == null) {
+                continue;
+            }
 
+            for(Contribution c : contributions) {
+                if(c != null && c.getDate().equals(date)) {
+                    totalRegisteredHours += c.getWorkTime() / 2;
+                }
+            }
+        }
+        return totalRegisteredHours;
+    }
 }

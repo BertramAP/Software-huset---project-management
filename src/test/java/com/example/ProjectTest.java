@@ -35,11 +35,11 @@ public class ProjectTest {
         this.project.assignEmploye(appHolder.getCurrentEmployee());
     }
 
-    @Given("the project has an activity with name {string}")
+    @And("the project has an activity with name {string}")
     public void theProjectHasAnActivityWithName(String name) {
         LocalDate startDate = LocalDate.now();
         LocalDate end = LocalDate.of(2026, 12, 31);
-        this.project.addActivity(new Activity(name, startDate, end, 20, ""));
+        appHolder.getCurrentProject().addActivity(new Activity(name, startDate, end, 20, ""));
     }
 
 
@@ -70,6 +70,7 @@ public class ProjectTest {
     public void theEmployeeIsTheProjectLeaderOfTheProject(String initials) {
         if (appHolder.getCurrentProject().getProjectLeader() == null) {
             appHolder.getCurrentProject().assignProjectLeader(appHolder.getCurrentEmployee());
+            appHolder.getApp().createUser(initials);
         } else {
             assertEquals(initials, appHolder.getCurrentProject().getProjectLeader().getID());
         }
@@ -86,7 +87,6 @@ public class ProjectTest {
     @When("the project leader requests time used on activity {string} on project {string}")
     public void theProjectLeaderRequestsTimeUsedOnActivity(String activityID, String projectID) {
         try {
-            System.out.println(appHolder.getApp().getProject(projectID).getActivity(activityID));
             appHolder.getApp().getProject(projectID).getActivity(activityID).getTimeUsed();
         } catch (Exception e) {
             appHolder.setError(new Exception("Activity does not exist"));
