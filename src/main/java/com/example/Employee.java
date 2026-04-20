@@ -64,10 +64,23 @@ public class Employee {
 
         return null;
     }
-
+    public Activity getActivity(String activityID) {
+        for(Activity a : assignedActivities) {
+            if(a.getID().equals(activityID)) {return a;}
+        }
+        return null;
+    }
     public void addContribution(String projectID, String activityID, Contribution contribution) {
         getProject(projectID).getActivity(activityID).addContribution(this.getID(), contribution);
     }
-
+    public boolean deleteActivity(String activityID) {
+        for(int i = 0; i < assignedActivities.size(); i++) {
+           if(assignedActivities.get(i).getID().equals(activityID)) {
+               assignedActivities.remove(i);
+               return true;
+           }
+        }
+        return false;
+    }
 
 }
