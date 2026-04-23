@@ -11,27 +11,26 @@ public class ProjectApp {
     private List<Employee> employees = new ArrayList<>();
     private List<Project> projects = new ArrayList<>();
 
-    private Boolean doesProjectExist(String name) {
-        for (Project project: this.projects) {
-            if (project.getID().equals(name)) return true;
-        }
-        return false;
-    }
-
     public Project createProject(String name) throws DuplicateProjectNameException {
-        Project project = new Project(name);
-        if (doesProjectExist(name)) {
-            throw new DuplicateProjectNameException("Project name already exists");
-        }
+        int year = LocalDate.now().getYear();
+        int id =  (year - 2000) * 1000 + projects.size() + 1; // Limits the amount of projects per year to 999
+        Project project = new Project(id, name);
         projects.add(project);
         return project;
     }
 
-    public Project getProject(String name) { 
+    public Project getProject(int id) { 
         for (Project p : projects) {
-            if (p.getID().equals(name)) return p;
+            if (p.getID() == id) return p;
         }
+        return null;
+    }
 
+    public Project getProjectByName(String name) {
+        for (Project p : projects) {
+            if (p.getName().equals(name))
+                return p;
+        }
         return null;
     }
 
@@ -56,7 +55,7 @@ public class ProjectApp {
         return null;
     }
 
-    public Activity createActivity(String projectId, String id, LocalDate startDate, LocalDate endDate, int budgetHalfHours, String creatorID) {
+    public Activity createActivity(int projectId, String id, LocalDate startDate, LocalDate endDate, int budgetHalfHours, String creatorID) {
         Project project = getProject(projectId);
         if (project == null) throw new IllegalArgumentException("Project does not exist");
 
@@ -66,7 +65,7 @@ public class ProjectApp {
         return activity;
     }
 
-    public void assignEmployee(String projectId, String employeeId) {
+    public void assignEmployee(int projectId, String employeeId) {
         Project project = getProject(projectId);
         if (project == null) throw new IllegalArgumentException("Project does not exist!");
 
@@ -85,7 +84,7 @@ public class ProjectApp {
         }
         return false;
     }
-    public boolean assignToActivity(String projectID, String activtyID, Employee emp) {
+    public boolean assignToActivity(int projectID, String activtyID, Employee emp) {
         try {
             getProject(projectID).getActivity(activtyID).addEmployee(emp);
         } catch (Exception e) {

@@ -59,7 +59,7 @@ public class ProjectTest {
 
     @When("the project leader requests a project report on project {string}")
     public void theProjectLeaderRequestsAProjectReport(String projectName) {
-        projectReport = appHolder.getApp().getProject(projectName).generateReport();
+        projectReport = appHolder.getApp().getProjectByName(projectName).generateReport();
     }
 
     @Then("the report shows {string} total hours spent on the project")
@@ -85,9 +85,9 @@ public class ProjectTest {
         }
     }
     @When("the project leader requests time used on activity {string} on project {string}")
-    public void theProjectLeaderRequestsTimeUsedOnActivity(String activityID, String projectID) {
+    public void theProjectLeaderRequestsTimeUsedOnActivity(String activityID, String projectName) {
         try {
-            appHolder.getApp().getProject(projectID).getActivity(activityID).getTimeUsed();
+            appHolder.getApp().getProjectByName(projectName).getActivity(activityID).getTimeUsed();
         } catch (Exception e) {
             appHolder.setError(new Exception("Activity does not exist"));
         }

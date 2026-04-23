@@ -31,7 +31,7 @@ public class Report {
 
     Report(Project project) {
         float totalHalfHours = project.getTimeUsed();
-        this.title = project.getID();
+        this.title = project.getName();
         String hours = Double.toString(totalHalfHours / 2.);
         if (hours.endsWith(".0")) hours = hours.substring(0, hours.length()-2);
         this.hours = hours;
