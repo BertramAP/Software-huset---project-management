@@ -13,7 +13,7 @@ public class ProjectApp {
 
     public Project createProject(String name) throws DuplicateProjectNameException {
         int year = LocalDate.now().getYear();
-        int id =  year * 1000 + projects.size() + 1; // Limits the amount of projects per year to 999
+        int id =  (year - 2000) * 1000 + projects.size() + 1; // Limits the amount of projects per year to 999
         Project project = new Project(id, name);
         projects.add(project);
         return project;
