@@ -1,7 +1,6 @@
 package com.example.cli.commands;
 
 import com.example.Cli;
-import com.example.Employee;
 import com.example.Project;
 import com.example.ProjectApp;
 import com.example.cli.AbstractCommand;
@@ -15,6 +14,11 @@ public class ReportCommand extends AbstractCommand {
     @Override
     public String getUsage() {
         return "report";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Print a report of every project";
     }
 
     @Override

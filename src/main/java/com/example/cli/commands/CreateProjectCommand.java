@@ -17,6 +17,11 @@ public class CreateProjectCommand extends AbstractCommand {
     }
 
     @Override
+    public String getDescription() {
+        return "Create a project";
+    }
+
+    @Override
     public boolean onCommand(String[] args) {
         if (!args[0].equals("create-project"))
             return false;

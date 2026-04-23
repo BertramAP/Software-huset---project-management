@@ -2,7 +2,6 @@ package com.example.cli.commands;
 
 import com.example.Cli;
 import com.example.Employee;
-import com.example.Project;
 import com.example.ProjectApp;
 import com.example.cli.AbstractCommand;
 
@@ -15,6 +14,11 @@ public class CreateUserCommand extends AbstractCommand {
     @Override
     public String getUsage() {
         return "create-user <name>";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Register a new user";
     }
 
     @Override

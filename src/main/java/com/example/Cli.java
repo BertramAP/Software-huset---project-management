@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.example.cli.AbstractCommand;
-import com.example.cli.commands.AssignCommand;
+import com.example.cli.commands.AssignActivityCommand;
 import com.example.cli.commands.CreateActivityCommand;
 import com.example.cli.commands.CreateProjectCommand;
 import com.example.cli.commands.CreateUserCommand;
@@ -58,12 +58,7 @@ public class Cli {
         if (args.length == 0) return;
 
         if (args[0].equals("help")) {
-            System.out.println("Commands:");
-            for (AbstractCommand c : commands) {
-                System.out.println(c.getUsage());
-            }
-            System.out.println("exit");
-            return;
+            printHelp();
         }
 
         for (AbstractCommand c : commands) {
@@ -73,10 +68,34 @@ public class Cli {
         System.out.println("Unknown command");
     }
 
+    private String repeatChar(String c, int n) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            builder.append(c);
+        }
+        return builder.toString();
+    }
+
+    private void printHelp() {
+        int longestUsage = 0;
+        for (AbstractCommand c : commands) {
+            String usage = c.getUsage();
+            if (usage.length() > longestUsage) longestUsage = usage.length();
+        }
+
+        System.out.println("Commands:");
+        for (AbstractCommand c : commands) {
+            String usage = c.getUsage();
+            System.out.println(usage + repeatChar(" ", longestUsage - usage.length()) + "\t" + c.getDescription());
+        }
+        System.out.println("exit");
+        return;
+    }
+
     public void setApp(ProjectApp app) {
         this.app = app;
         commands.clear();
-        commands.add(new AssignCommand(app, this));
+        commands.add(new AssignActivityCommand(app, this));
         commands.add(new CreateActivityCommand(app, this));
         commands.add(new CreateProjectCommand(app, this));
         commands.add(new CreateUserCommand(app, this));

@@ -18,6 +18,11 @@ public class CreateActivityCommand extends AbstractCommand {
     }
 
     @Override
+    public String getDescription() {
+        return "Create an activity in a project";
+    }
+
+    @Override
     public boolean onCommand(String[] args) {
         if (!args[0].equals("create-activity"))
             return false;

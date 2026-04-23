@@ -14,4 +14,5 @@ public abstract class AbstractCommand {
 
     abstract public boolean onCommand(String[] args);
     abstract public String getUsage();
+    abstract public String getDescription();
 }

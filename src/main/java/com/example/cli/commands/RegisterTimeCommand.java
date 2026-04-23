@@ -21,6 +21,11 @@ public class RegisterTimeCommand extends AbstractCommand {
     }
 
     @Override
+    public String getDescription() {
+        return "Register how many half-hours you've spent on an activity";
+    }
+
+    @Override
     public boolean onCommand(String[] args) {
         if (!args[0].equals("register-time"))
             return false;

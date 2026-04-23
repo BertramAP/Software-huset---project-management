@@ -5,20 +5,25 @@ import com.example.Employee;
 import com.example.ProjectApp;
 import com.example.cli.AbstractCommand;
 
-public class AssignCommand extends AbstractCommand {
+public class AssignActivityCommand extends AbstractCommand {
 
-    public AssignCommand(ProjectApp app, Cli cli) {
+    public AssignActivityCommand(ProjectApp app, Cli cli) {
         super(app, cli);
     }
 
     @Override
     public String getUsage() {
-        return "assign <project-name> <activity-name> <username>";
+        return "assign-activity <project-name> <activity-name> <username>";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Assigns a user to an activity in a project";
     }
 
     @Override
     public boolean onCommand(String[] args) {
-        if (!args[0].equals("assign"))
+        if (!args[0].equals("assign-activity"))
             return false;
         if (args.length < 3)
             throw new IllegalArgumentException("Usage: " + getUsage());
