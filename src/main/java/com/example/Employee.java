@@ -71,7 +71,7 @@ public class Employee {
         return null;
     }
     public void addContribution(String projectID, String activityID, Contribution contribution) {
-        getProject(projectID).getActivity(activityID).addContribution(this.getID(), contribution);
+        getProject(projectID).getActivity(activityID).addContribution(contribution);
     }
     public boolean deleteActivity(String activityID) {
         for(int i = 0; i < assignedActivities.size(); i++) {

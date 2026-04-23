@@ -1,0 +1,43 @@
+package com.example.cli.commands;
+
+import java.time.LocalDate;
+
+import com.example.Activity;
+import com.example.Cli;
+import com.example.Contribution;
+import com.example.Project;
+import com.example.ProjectApp;
+import com.example.cli.AbstractCommand;
+
+public class RegisterTimeCommand extends AbstractCommand {
+
+    public RegisterTimeCommand(ProjectApp app, Cli cli) {
+        super(app, cli);
+    }
+
+    @Override
+    public String getUsage() {
+        return "register-time <project-name> <activity-name> <half-hours>";
+    }
+
+    @Override
+    public boolean onCommand(String[] args) {
+        if (!args[0].equals("register-time"))
+            return false;
+        if (args.length < 4)
+            throw new IllegalArgumentException("Usage: " + getUsage());
+
+        Project project = app.getProject(args[1]);
+        if (project == null)
+            throw new IllegalArgumentException("Project does not exist!");
+
+        Activity activity = project.getActivity(args[2]);
+        if (activity == null)
+            throw new IllegalArgumentException("Activity does not exist!");
+
+        activity.addContribution(
+                new Contribution(cli.getCurrentUser(), Integer.parseInt(args[3]), LocalDate.now()));
+
+        return true;
+    }
+}
