@@ -23,7 +23,7 @@ public class AssignCommand extends AbstractCommand {
         if (args.length < 3)
             throw new IllegalArgumentException("Usage: " + getUsage());
 
-        Employee employee = app.getUser(args[3]);
+        Employee employee = app.getEmployee(args[3]);
         if (employee == null)
             throw new IllegalArgumentException("User does not exist!");
 

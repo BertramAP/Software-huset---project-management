@@ -42,7 +42,7 @@ public class Cli {
         while (true) {
             System.out.print("Sign in: ");
             String username = scanner.nextLine();
-            var user = app.getUser(username);
+            var user = app.getEmployee(username);
             if (user != null) {
                 currentUser = user;
                 System.out.println("Signed in successfully");

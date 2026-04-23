@@ -47,7 +47,7 @@ public class ProjectApp {
         return user;
     }
 
-    public Employee getUser(String name) {
+    public Employee getEmployee(String name) {
         for (Employee e : employees) {
             if (e.getID().equals(name)) return e;
         }
@@ -70,7 +70,7 @@ public class ProjectApp {
         Project project = getProject(projectId);
         if (project == null) throw new IllegalArgumentException("Project does not exist!");
 
-        Employee user = getUser(employeeId);
+        Employee user = getEmployee(employeeId);
         if (user == null) throw new IllegalArgumentException("User does not exist");
 
         project.assignEmploye(user);

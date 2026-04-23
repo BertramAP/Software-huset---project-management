@@ -11,7 +11,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import java.time.LocalDate;
 
 public class EmployeeTest {
     Employee employee;
@@ -96,7 +95,7 @@ public class EmployeeTest {
         Activity activity = appHolder.getApp().getProject(projectName).getActivity(activityName);
         appHolder.getApp().getProject(projectName).getActivity(activityName).addContribution(employeeID, contribution);
 
-        appHolder.getApp().getUser(employeeID).assignToActivity(activity);
+        appHolder.getApp().getEmployee(employeeID).assignToActivity(activity);
     }
 
     @And("the employee {string} has registered {int} hours on activity {string} on date {string}")
@@ -106,7 +105,7 @@ public class EmployeeTest {
         if (appHolder.getCurrentProject().getActivity(activityName) == null) {
             appHolder.getCurrentProject().addActivity(new Activity(activityName, localDate, localDate, hours * 2, employeeID));
         }
-        appHolder.getApp().getUser(employeeID).assignToActivity(appHolder.getCurrentProject().getActivity(activityName));
+        appHolder.getApp().getEmployee(employeeID).assignToActivity(appHolder.getCurrentProject().getActivity(activityName));
         appHolder.getCurrentProject().getActivity(activityName).addContribution(employeeID, new Contribution(employee, hours * 2, localDate));
     }
 
@@ -115,7 +114,7 @@ public class EmployeeTest {
     @When("the employee {string} views registered hours for date {string}")
     public void theEmployeeViewsRegisteredHoursForDate(String employeeID, String date) {
         LocalDate target = LocalDate.parse(date);
-        this.totalRegisteredHours =  appHolder.getApp().getUser(employeeID).viewHours(target);
+        this.totalRegisteredHours =  appHolder.getApp().getEmployee(employeeID).viewHours(target);
     }
 
     @Then("the total registered hours are {int}")
