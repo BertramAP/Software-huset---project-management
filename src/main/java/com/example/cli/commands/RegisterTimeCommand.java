@@ -40,9 +40,11 @@ public class RegisterTimeCommand extends AbstractCommand {
         if (activity == null)
             throw new IllegalArgumentException("Activity does not exist!");
 
+        int halfHours = Integer.parseInt(args[3]);
         activity.addContribution(
-                new Contribution(cli.getCurrentUser(), Integer.parseInt(args[3]), LocalDate.now()));
+                new Contribution(cli.getCurrentUser(), halfHours, LocalDate.now()));
 
+        System.out.println("Successfully registered " + halfHours + " half hours to " + activity.getID());
         return true;
     }
 }
