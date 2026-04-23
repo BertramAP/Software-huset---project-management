@@ -57,9 +57,9 @@ public class Employee {
         }
         return true;
     }
-    public Project getProject(String name) {
+    public Project getProject(int id) {
         for (Project p : projects) {
-            if (p.getID().equals(name)) return p;
+            if (p.getID() == id) return p;
         }
 
         return null;
@@ -70,7 +70,7 @@ public class Employee {
         }
         return null;
     }
-    public void addContribution(String projectID, String activityID, Contribution contribution) {
+    public void addContribution(int projectID, String activityID, Contribution contribution) {
         getProject(projectID).getActivity(activityID).addContribution(contribution);
     }
     public boolean deleteActivity(String activityID) {

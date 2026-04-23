@@ -93,8 +93,8 @@ public class EmployeeTest {
         String[] splitString = date.split("-");
         LocalDate localDate = LocalDate.of(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), Integer.parseInt(splitString[2]));
         Contribution contribution = new Contribution(new Employee(employeeID), hours*2, localDate); // Create the contribution
-        Activity activity = appHolder.getApp().getProject(projectName).getActivity(activityName);
-        appHolder.getApp().getProject(projectName).getActivity(activityName).addContribution(contribution);
+        Activity activity = appHolder.getApp().getProjectByName(projectName).getActivity(activityName);
+        appHolder.getApp().getProjectByName(projectName).getActivity(activityName).addContribution(contribution);
 
         appHolder.getApp().getEmployee(employeeID).assignToActivity(activity);
     }

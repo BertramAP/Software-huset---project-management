@@ -14,7 +14,7 @@ public class CreateActivityCommand extends AbstractCommand {
 
     @Override
     public String getUsage() {
-        return "create-activity <activity-name> <project-name> <start-date> <end-date> <half-hours>";
+        return "create-activity <activity-name> <project-id> <start-date> <end-date> <half-hours>";
     }
 
     @Override
@@ -29,7 +29,8 @@ public class CreateActivityCommand extends AbstractCommand {
         if (args.length < 6)
             throw new IllegalArgumentException("Usage: " + getUsage());
 
-        app.createActivity(args[2], args[1], LocalDate.parse(args[3]), LocalDate.parse(args[4]),
+        int projectId = Integer.parseInt(args[2]);
+        app.createActivity(projectId, args[1], LocalDate.parse(args[3]), LocalDate.parse(args[4]),
                 Integer.parseInt(args[5]), cli.getCurrentUser().getID());
 
         System.out.println("Created activity " + args[1]);

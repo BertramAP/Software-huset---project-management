@@ -13,7 +13,7 @@ public class AssignActivityCommand extends AbstractCommand {
 
     @Override
     public String getUsage() {
-        return "assign-activity <project-name> <activity-name> <username>";
+        return "assign-activity <project-id> <activity-name> <username>";
     }
 
     @Override
@@ -32,7 +32,8 @@ public class AssignActivityCommand extends AbstractCommand {
         if (employee == null)
             throw new IllegalArgumentException("User does not exist!");
 
-        if (!app.assignToActivity(args[1], args[2], employee))
+        int projectId = Integer.parseInt(args[1]);
+        if (!app.assignToActivity(projectId, args[2], employee))
             throw new RuntimeException("An error ocurred");
         System.out.println("Assigned " + employee.getID() + " to " + args[2]);
         return true;

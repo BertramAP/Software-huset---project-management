@@ -14,7 +14,7 @@ public class AssignLeaderCommand extends AbstractCommand {
 
     @Override
     public String getUsage() {
-        return "assign-leader <project-name> <username>";
+        return "assign-leader <project-id> <username>";
     }
 
     @Override
@@ -33,7 +33,8 @@ public class AssignLeaderCommand extends AbstractCommand {
         if (employee == null)
             throw new IllegalArgumentException("User does not exist!");
 
-        Project project = app.getProject(args[1]);
+        int projectId = Integer.parseInt(args[1]);
+        Project project = app.getProject(projectId);
         if (project == null)
             throw new IllegalArgumentException("Project does not exist!");
 

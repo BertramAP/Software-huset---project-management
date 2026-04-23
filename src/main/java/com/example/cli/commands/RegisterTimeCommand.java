@@ -17,7 +17,7 @@ public class RegisterTimeCommand extends AbstractCommand {
 
     @Override
     public String getUsage() {
-        return "register-time <project-name> <activity-name> <half-hours>";
+        return "register-time <project-id> <activity-name> <half-hours>";
     }
 
     @Override
@@ -32,7 +32,8 @@ public class RegisterTimeCommand extends AbstractCommand {
         if (args.length < 4)
             throw new IllegalArgumentException("Usage: " + getUsage());
 
-        Project project = app.getProject(args[1]);
+        int projectId = Integer.parseInt(args[1]);
+        Project project = app.getProject(projectId);
         if (project == null)
             throw new IllegalArgumentException("Project does not exist!");
 

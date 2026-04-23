@@ -6,15 +6,17 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Project {
-    private final String projectID;
+    private final int id;
+    private final String name;
     private Employee projectLeader;
     private LocalDate startDate;
     private LocalDate endDate;
     private List<Employee> employees;
     private List<Activity> activities;
 
-    public Project(String name) {
-        this.projectID = name;
+    public Project(int id, String name) {
+        this.id = id;
+        this.name = name;
         this.employees = new ArrayList<Employee>();
         this.activities = new ArrayList<Activity>();
         this.projectLeader = null;
@@ -51,8 +53,11 @@ public class Project {
         }
 
     }
-    public String getID() {
-        return projectID;
+    public int getID() {
+        return id;
+    }
+    public String getName() {
+        return name;
     }
 
     public Employee getProjectLeader() {
