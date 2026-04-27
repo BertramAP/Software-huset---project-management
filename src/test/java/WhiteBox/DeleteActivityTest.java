@@ -1,4 +1,5 @@
 // This file is the whitebox test for the deleteActivity function, in the Employee class
+// Code writeen BAP
 package WhiteBox;
 
 import com.example.Activity;
@@ -18,7 +19,7 @@ public class DeleteActivityTest {
         this.emp = new Employee("bap");
     }
     @Test
-    public void testTC1DeleteExistingActivityFromNonEmptyList() {
+    public void testADeleteExistingActivityFromNonEmptyList() {
         LocalDate startDate = LocalDate.parse("2026-04-23");
         LocalDate endDate = LocalDate.parse("2026-12-31");
         this.emp.assignToActivity(new Activity("Act A", startDate, endDate, 5, this.emp.getID()));
@@ -29,7 +30,7 @@ public class DeleteActivityTest {
         assertNull(this.emp.getActivity("Act A"));
     }
     @Test
-    public void testTC2DeleteNonExistingActivityFromNonEmptyList() {
+    public void testBDeleteNonExistingActivityFromNonEmptyList() {
         LocalDate startDate = LocalDate.parse("2026-04-23");
         LocalDate endDate = LocalDate.parse("2026-12-31");
         this.emp.assignToActivity(new Activity("Act A", startDate, endDate, 5, this.emp.getID()));
@@ -38,7 +39,7 @@ public class DeleteActivityTest {
         assertFalse(result);
     }
     @Test
-    public void testTC3DeleteActivityFromEmptyList() {
+    public void testCDeleteActivityFromEmptyList() {
         boolean result = this.emp.deleteActivity("Act B");
         assertFalse(result);
     }

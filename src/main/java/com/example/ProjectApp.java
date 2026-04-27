@@ -34,7 +34,7 @@ public class ProjectApp {
         return null;
     }
 
-    public Employee createUser(String name) {
+    public Employee createUser(String name) { // Written by BAP
         boolean userExists = employees.stream().anyMatch(e -> e.getID().equals(name));
 
         if(userExists) {
@@ -74,8 +74,8 @@ public class ProjectApp {
 
         project.assignEmploye(user);
     }
-    public List<Project> getProjects() {return projects;}
-    public boolean deleteUser(String UserID) {
+    public List<Project> getProjects() {return projects;} // Written by BAP
+    public boolean deleteUser(String UserID) { // Written by BAP
         for (int i = 0; i < employees.size(); i++) {
             if (employees.get(i).getID().equals(UserID)) {
                 employees.remove(i);
@@ -84,7 +84,7 @@ public class ProjectApp {
         }
         return false;
     }
-    public boolean assignToActivity(int projectID, String activtyID, Employee emp) {
+    public boolean assignToActivity(int projectID, String activtyID, Employee emp) { // Written by BAP
         try {
             getProject(projectID).getActivity(activtyID).addEmployee(emp);
         } catch (Exception e) {

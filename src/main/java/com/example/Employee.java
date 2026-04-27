@@ -11,7 +11,7 @@ public class Employee {
     private List<PersonalActivity> personalActivities;
     private List<Activity> assignedActivities = new ArrayList<>();
 
-    public Employee(String ID) {
+    public Employee(String ID) { // Written by BAP
         this.ID = ID;
         this.projects = new ArrayList<Project>();
         this.personalActivities = new ArrayList<PersonalActivity>();
@@ -19,15 +19,15 @@ public class Employee {
 
     public void addProject(Project project) {
         projects.add(project);
-    }
+    } // Written by BAP
 
     public List<Project> getProjects() {
         return projects;
-    }
+    } // Written by BAP
 
     public String getID() {
         return ID;
-    }
+    } // Written by BAP
 
     public void addPersonalActivity(String name, String from, String to) {
         LocalDate start = LocalDate.parse(from);
@@ -43,7 +43,7 @@ public class Employee {
 
     public void assignToActivity(Activity activity) {
         assignedActivities.add(activity);
-    }
+    } // Written by BAP
 
     
     public boolean isAvailable(int week, int year) {
@@ -57,14 +57,14 @@ public class Employee {
         }
         return true;
     }
-    public Project getProject(int id) {
+    public Project getProject(int id) { // Written by BAP
         for (Project p : projects) {
             if (p.getID() == id) return p;
         }
 
         return null;
     }
-    public Activity getActivity(String activityID) {
+    public Activity getActivity(String activityID) { // Written by BAP
         for(Activity a : assignedActivities) {
             if(a.getID().equals(activityID)) {return a;}
         }
@@ -73,7 +73,7 @@ public class Employee {
     public void addContribution(int projectID, String activityID, Contribution contribution) {
         getProject(projectID).getActivity(activityID).addContribution(contribution);
     }
-    public boolean deleteActivity(String activityID) {
+    public boolean deleteActivity(String activityID) { // Written by BAP
         for(int i = 0; i < assignedActivities.size(); i++) {
            if(assignedActivities.get(i).getID().equals(activityID)) {
                assignedActivities.remove(i);
@@ -82,7 +82,7 @@ public class Employee {
         }
         return false;
     }
-    public int viewHours(LocalDate date) {
+    public int viewHours(LocalDate date) { // Written by BAP
         int totalRegisteredHours = 0;
         for (Activity a : assignedActivities) {
             List<Contribution> contributions = a.getContributions(this.ID);
