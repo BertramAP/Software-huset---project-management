@@ -14,7 +14,7 @@ public class Activity {
     private String creatorID;
     private ArrayList<Employee> employees;
 
-    public Activity(String ID, LocalDate startDate, LocalDate endDate, int budgetHalfHours, String creatorID) {
+    public Activity(String ID, LocalDate startDate, LocalDate endDate, int budgetHalfHours, String creatorID) { // Written by AK
         this.ID = ID;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -40,7 +40,7 @@ public class Activity {
 
     }
 
-    public int getWorkHalfHours() {
+    public int getWorkHalfHours() { // Written by AK
         return getTimeUsed();
     }
 
@@ -71,14 +71,14 @@ public class Activity {
         return startDate;
     }
 
-    public void addEmployee(Employee employee) {
+    public void addEmployee(Employee employee) { // Written by AK
         if (hasEmployee(employee.getID())) {
             throw new IllegalArgumentException("Employee is already assigned to the activity");
         }
         employees.add(employee);
     }
 
-    public boolean hasEmployee(String employeeID) {
+    public boolean hasEmployee(String employeeID) { // Written by AK
         for (Employee e : employees) {
             if (e.getID().equals(employeeID)) {
                 return true;

@@ -36,7 +36,7 @@ public class ProjectTest {
     }
 
     @And("the project has an activity with name {string}")
-    public void theProjectHasAnActivityWithName(String name) {
+    public void theProjectHasAnActivityWithName(String name) { // Written by AK
         LocalDate startDate = LocalDate.now();
         LocalDate end = LocalDate.of(2026, 12, 31);
         appHolder.getCurrentProject().addActivity(new Activity(name, startDate, end, 20, ""));
@@ -44,7 +44,7 @@ public class ProjectTest {
 
 
     @When("the employee {string} is removed from the project")
-    public void theEmployeeIsRemovedFromTheProject(String initials) {
+    public void theEmployeeIsRemovedFromTheProject(String initials) {// Written by AK
         try {
             appHolder.getCurrentProject().removeEmployee(initials);
         } catch (Exception e) {
@@ -53,7 +53,7 @@ public class ProjectTest {
     }
 
     @Then("the employee {string} is no longer assigned to the project")
-    public void theEmployeeIsNoLongerAssignedToTheProject(String initials) {
+    public void theEmployeeIsNoLongerAssignedToTheProject(String initials) {// Written by AK
         assertFalse(appHolder.getCurrentProject().hasEmployee(initials));
     }
 
@@ -67,7 +67,7 @@ public class ProjectTest {
         assertEquals(hours, projectReport.getHours());
     }
     @Then("the employee {string} is the project leader of the project")
-    public void theEmployeeIsTheProjectLeaderOfTheProject(String initials) {
+    public void theEmployeeIsTheProjectLeaderOfTheProject(String initials) {// Written by AK
         if (appHolder.getCurrentProject().getProjectLeader() == null) {
             appHolder.getCurrentProject().assignProjectLeader(appHolder.getCurrentEmployee());
             appHolder.getApp().createUser(initials);
@@ -77,7 +77,7 @@ public class ProjectTest {
     }
 
     @When("the employee {string} is assigned as project leader")
-    public void theEmployeeIsAssignedAsProjectLeader(String string) {
+    public void theEmployeeIsAssignedAsProjectLeader(String string) {// Written by AK
         try {
             appHolder.getCurrentProject().assignProjectLeader(appHolder.getCurrentEmployee());
         } catch (Exception e) {

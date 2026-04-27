@@ -29,14 +29,14 @@ public class Employee {
         return ID;
     } // Written by BAP
 
-    public void addPersonalActivity(String name, String from, String to) {
+    public void addPersonalActivity(String name, String from, String to) { // Written by OFK
         LocalDate start = LocalDate.parse(from);
         LocalDate end = LocalDate.parse(to);
         personalActivities.add(new PersonalActivity(name, start, end));
     }
 
 
-    public boolean hasPersonalActivity(String name) {
+    public boolean hasPersonalActivity(String name) { // Written by OFK
         return personalActivities.stream().anyMatch(a -> a.getName().equals(name));
     }
 
@@ -46,7 +46,7 @@ public class Employee {
     } // Written by BAP
 
     
-    public boolean isAvailable(int week, int year) {
+    public boolean isAvailable(int week, int year) { // Written by OFK
         for (Activity a : assignedActivities) {
             WeekFields weekFields = WeekFields.of(Locale.getDefault());
             int actWeek = a.getStartDate().get(weekFields.weekOfWeekBasedYear());

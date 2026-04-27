@@ -25,14 +25,14 @@ public class Project {
     public void assignEmploye(Employee employee) {
         this.employees.add(employee);
     }
-    public void assignProjectLeader(Employee employee) {
+    public void assignProjectLeader(Employee employee) { // Written by AK
         if (this.projectLeader != null) {
             throw new IllegalStateException("Project already has a project leader");
         }
         this.projectLeader = employee;
     }
 
-    public void removeEmployee(String ID) {
+    public void removeEmployee(String ID) { // Written by BAP
         for (int i = 0; i < this.employees.size(); i++) {
             if (employees.get(i).getID().equals(ID)) {
                 employees.remove(i);
@@ -42,10 +42,11 @@ public class Project {
         throw new IllegalArgumentException("Employee is not assigned to the project");
     }
 
-    public boolean hasEmployee(String ID) {
+    public boolean hasEmployee(String ID) { // Written by AK
         return employees.stream().anyMatch(e -> e.getID().equals(ID));
     }
-    public void addActivity(Activity activity) {
+
+    public void addActivity(Activity activity) { // Written by BAP
         if(getActivity(activity.getID()) == null) {
             activities.add(activity);
         } else {
@@ -60,10 +61,10 @@ public class Project {
         return name;
     }
 
-    public Employee getProjectLeader() {
+    public Employee getProjectLeader() { // Written by AK
         return projectLeader;
     }
-    public Activity getActivity(String ID) {
+    public Activity getActivity(String ID) { // Written by AK
         for (Activity a : activities) {
             if (a.getID().equals(ID)) {
                 return a;
@@ -76,7 +77,7 @@ public class Project {
         return new Report(this); // Give current project to the report
     }
 
-    public int getTimeUsed() {
+    public int getTimeUsed() { // Written by BAP
         int time = 0;
         for(Activity a: activities) {
             time += a.getTimeUsed();
@@ -84,7 +85,7 @@ public class Project {
         return time;
     }
 
-    public int getTimeUsed(String activityID) {
+    public int getTimeUsed(String activityID) { // Written by BAP
         return getActivity(activityID).getTimeUsed();
     }
 
@@ -92,7 +93,7 @@ public class Project {
         return activities;
     }
 
-    public boolean assignToActivity(String activityID, Employee emp) {
+    public boolean assignToActivity(String activityID, Employee emp) { // Written by BAP
         try {
             getActivity(activityID).addEmployee(emp);
         } catch (Exception e) {

@@ -18,7 +18,7 @@ public class EmployeeTest {
     AppHolder appHolder;
     Project project;
 
-    public EmployeeTest(AppHolder appHolder) {
+    public EmployeeTest(AppHolder appHolder) { // Written by AK
         this.appHolder = appHolder;
     }
 
@@ -47,7 +47,7 @@ public class EmployeeTest {
     }
 
     @And("the employee {string} has no activities in week {int} of {int}")
-        public void the_employee_has_no_activities_in_week_of(String initials, int week, int year) {
+        public void the_employee_has_no_activities_in_week_of(String initials, int week, int year) { // Written by OFK
         // New employee has no activities by default, nothing to set up
     }
 
@@ -55,23 +55,23 @@ public class EmployeeTest {
     int checkedYear;
 
     @When("the project leader checks availability for week {int} of {int}")
-    public void the_project_leader_checks_availability_for_week_of(int week, int year) {
+    public void the_project_leader_checks_availability_for_week_of(int week, int year) { // Written by OFK
         this.checkedWeek = week;
         this.checkedYear = year;
     }
 
     @Then("the employee {string} is listed as available")
-    public void the_employee_is_listed_as_available(String initials) {
+    public void the_employee_is_listed_as_available(String initials) { // Written by OFK
         assertTrue(employee.isAvailable(checkedWeek, checkedYear));
     }
 
     @Then("the employee {string} is not listed as available")
-    public void the_employee_is_not_listed_as_available(String initials) {
+    public void the_employee_is_not_listed_as_available(String initials) { // Written by OFK
         assertFalse(employee.isAvailable(checkedWeek, checkedYear));
     }
 
     @And("the employee {string} is assigned to an activity in week {int} of {int}")
-    public void the_employee_is_assigned_to_an_activity_in_week_of(String initials, int week, int year) {
+    public void the_employee_is_assigned_to_an_activity_in_week_of(String initials, int week, int year) { // Written by OFK
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         LocalDate date = LocalDate.of(year, 6, 1).with(weekFields.weekOfWeekBasedYear(), week);
         Activity activity = new Activity("test", date, date, 10, initials);
@@ -81,7 +81,7 @@ public class EmployeeTest {
 
 
     @Then("the error message {string} is given")
-    public void theErrorMessageIsGiven(String errorMessage) {
+    public void theErrorMessageIsGiven(String errorMessage) { // Written by AK
         assertEquals(appHolder.getError().getMessage(), errorMessage);
     }
 
@@ -113,31 +113,30 @@ public class EmployeeTest {
     private int totalRegisteredHours;
 
     @When("the employee {string} views registered hours for date {string}")
-    public void theEmployeeViewsRegisteredHoursForDate(String employeeID, String date) {
+    public void theEmployeeViewsRegisteredHoursForDate(String employeeID, String date) { // Written by OFK
         LocalDate target = LocalDate.parse(date);
         this.totalRegisteredHours =  appHolder.getApp().getEmployee(employeeID).viewHours(target);
     }
 
     @Then("the total registered hours are {int}")
-    public void theTotalRegisteredHoursAre(int expected) {
+    public void theTotalRegisteredHoursAre(int expected) { // Written by OFK
         assertEquals(expected, totalRegisteredHours);
     }
 
     @And("the employee {string} changes the registered hours to {int} on activity {string} on date {string}")
-    public void theEmployeeChangesTheRegisteredHoursToOnActivityOnDate(String employeeID, int hours, String activityName, String date) {
-        //REDO
+    public void theEmployeeChangesTheRegisteredHoursToOnActivityOnDate(String employeeID, int hours, String activityName, String date) { // Written by BAP
         for (Contribution c : appHolder.getCurrentProject().getActivity(activityName).getContributions(employeeID)) {
             c.updateTime(hours * 2);
         }
     }
 
     @Then("{int} hours are registered for employee {string} on activity {string} on date {string}")
-    public void hoursAreRegisteredForEmployeeOnActivityOnDate(int hours, String employeeID, String activityName, String date) {
+    public void hoursAreRegisteredForEmployeeOnActivityOnDate(int hours, String employeeID, String activityName, String date) { // Written by OFK
         assertEquals(hours * 2, appHolder.getCurrentProject().getActivity(activityName).getTimeUsed(employeeID));
     }
 
     @When("the employee {string} registers {int} hours on activity {string} on date {string}")
-    public void theEmployeeRegistersHoursOnActivityOnDate(String employeeID, int hours, String activityName, String date) {
+    public void theEmployeeRegistersHoursOnActivityOnDate(String employeeID, int hours, String activityName, String date) { // Written by OFK
         try {
             appHolder.getCurrentProject().getActivity(activityName).addContribution(
                     new Contribution(appHolder.getCurrentEmployee(), hours * 2, LocalDate.parse(date)));
