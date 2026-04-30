@@ -86,13 +86,25 @@ public class Employee {
     public void addContribution(int projectID, String activityID, Contribution contribution) {
         getProject(projectID).getActivity(activityID).addContribution(contribution);
     }
-    public boolean deleteActivity(String activityID) { // Written by BAP
+    public boolean deleteActivity(String activityID) { // Written by BAP & assert written by MJ
+        // Pre-conditions
+        int orginalSize = assignedActivities.size();
+        assert assignedActivities != null;
+        assert activityID != null;
+        for (Activity activity: assignedActivities) {
+            assert activity != null;
+            assert activity.getID() != null;
+        }
+
         for(int i = 0; i < assignedActivities.size(); i++) {
            if(assignedActivities.get(i).getID().equals(activityID)) {
                assignedActivities.remove(i);
+
+               assert assignedActivities.size() == orginalSize - 1; // Post-condition
                return true;
            }
         }
+        assert assignedActivities.size() == orginalSize; // Post-condition
         return false;
     }
     public int viewHours(LocalDate date) { // Written by BAP
