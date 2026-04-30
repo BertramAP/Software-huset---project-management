@@ -40,7 +40,7 @@ public class Report {
         this.activityCount = "" + project.getActivities().size();
     }
 
-    private int getLongestStringLength(String[] strings) {
+    public static int getLongestStringLength(String[] strings) {
         if (strings.length == 0) return 0;
         int longest = strings[0].length();
         for (String string: strings) {
