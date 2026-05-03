@@ -44,11 +44,11 @@ public class Activity {
         return getTimeUsed();
     }
 
-    public List<Contribution> getContributions(String id) {
+    public List<Contribution> getContributions(String id) { // Written by BAP
         return contributions.get(id);
     }
 
-    public int getTimeUsed() {
+    public int getTimeUsed() { // Written by BAP
         int totalTime = 0;
         for (List<Contribution> cList : contributions.values()) {
             for (Contribution c : cList) {
@@ -58,7 +58,7 @@ public class Activity {
         return totalTime;
     }
 
-    public int getTimeUsed(String id) {
+    public int getTimeUsed(String id) { // Written by BAP
         int totalTime = 0;
         List<Contribution> cList = contributions.get(id);
         for(Contribution c : cList) {
@@ -67,7 +67,7 @@ public class Activity {
         return totalTime;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDate getStartDate() { // Written by BAP
         return startDate;
     }
 

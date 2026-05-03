@@ -18,11 +18,11 @@ public class ProjectTest {
     AppHolder appHolder;
     Report projectReport;
 
-    public ProjectTest(AppHolder appHolder) {
+    public ProjectTest(AppHolder appHolder) { // Written by BAP
         this.appHolder = appHolder;
     }
     @Given("there is a project with name {string}")
-    public void thereIsAProjectWithName(String projectName) {
+    public void thereIsAProjectWithName(String projectName) { // Written by BAP
         this.project = appHolder.getApp().createProject(projectName);
         appHolder.setCurrentProject(this.project);
     }

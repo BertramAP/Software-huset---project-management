@@ -33,9 +33,20 @@ public class Project {
     }
 
     public void removeEmployee(String ID) {
+        assert this.employees != null; // Pre-condition
+        assert ID != null; // Pre-condition
+        int originalSize = this.employees.size(); // For post-condition
+
+        // Pre-condition
+        for (Employee employee: this.employees) {
+            assert employee != null;
+            assert employee.getID() != null;
+        }
+
         for (int i = 0; i < this.employees.size(); i++) {
             if (employees.get(i).getID().equals(ID)) {
                 employees.remove(i);
+                assert this.employees.size() == (originalSize - 1); // post-condition
                 return;
             }
         }

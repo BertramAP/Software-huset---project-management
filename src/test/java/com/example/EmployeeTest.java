@@ -23,14 +23,14 @@ public class EmployeeTest {
     }
 
     @Given("there is an employee with initials {string}")
-    public void thereIsAnEmployeeWithInitials(String string) {
+    public void thereIsAnEmployeeWithInitials(String string) { // Written by BAP
         this.employee = new Employee(string);
         appHolder.getApp().createUser(string);
         appHolder.setCurrentEmployee(this.employee);
     }
 
     @When("the employee creates a project with name {string}")
-    public void theEmployeeCreatesAProjectWithName(String string) {
+    public void theEmployeeCreatesAProjectWithName(String string) { // Written by BAP
         ProjectApp app = appHolder.getApp();
         try {
             project = app.createProject(string);
@@ -41,7 +41,7 @@ public class EmployeeTest {
         employee.addProject(project);
     }
     @Then("the project is created")
-    public void theProjectIsCreated() {
+    public void theProjectIsCreated() { // Written by BAP
     // Write code here that turns the phrase above into concrete actions
         assertEquals(1, employee.getProjects().size());
     }
@@ -70,6 +70,11 @@ public class EmployeeTest {
         assertFalse(employee.isAvailable(checkedWeek, checkedYear));
     }
 
+    @Then("the employee {string} is not listed as available in week {int} of {int}")
+    public void the_employee_is_not_listed_as_available_in_week_of(String initials, int week, int year) {
+        assertFalse(appHolder.getCurrentEmployee().isAvailable(week, year));
+    }
+
     @And("the employee {string} is assigned to an activity in week {int} of {int}")
     public void the_employee_is_assigned_to_an_activity_in_week_of(String initials, int week, int year) {
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
@@ -86,7 +91,7 @@ public class EmployeeTest {
     }
 
     @And("the employee {string} has registered {int} hours on activity {string} under project {string} on date {string}")
-    public void theEmployeeHasRegisteredHoursOnActivityOnDate(String employeeID, int hours, String activityName, String projectName, String date) {
+    public void theEmployeeHasRegisteredHoursOnActivityOnDate(String employeeID, int hours, String activityName, String projectName, String date) { // Written by BAP
         // Write code here that turns the phrase above into concrete actions
         appHolder.getApp().createUser(employeeID);
 
@@ -100,7 +105,7 @@ public class EmployeeTest {
     }
 
     @And("the employee {string} has registered {int} hours on activity {string} on date {string}")
-    public void theEmployeeHasRegisteredHoursOnActivityOnDate(String employeeID, int hours, String activityName, String date) {
+    public void theEmployeeHasRegisteredHoursOnActivityOnDate(String employeeID, int hours, String activityName, String date) { // Written by BAP
         LocalDate localDate = LocalDate.parse(date);
 
         if (appHolder.getCurrentProject().getActivity(activityName) == null) {

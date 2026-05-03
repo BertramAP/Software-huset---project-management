@@ -11,7 +11,7 @@ public class Employee {
     private List<PersonalActivity> personalActivities;
     private List<Activity> assignedActivities = new ArrayList<>();
 
-    public Employee(String ID) {
+    public Employee(String ID) { // Written by BAP
         this.ID = ID;
         this.projects = new ArrayList<Project>();
         this.personalActivities = new ArrayList<PersonalActivity>();
@@ -19,15 +19,15 @@ public class Employee {
 
     public void addProject(Project project) {
         projects.add(project);
-    }
+    } // Written by BAP
 
     public List<Project> getProjects() {
         return projects;
-    }
+    } // Written by BAP
 
     public String getID() {
         return ID;
-    }
+    } // Written by BAP
 
     public void addPersonalActivity(String name, String from, String to) {
         LocalDate start = LocalDate.parse(from);
@@ -43,28 +43,41 @@ public class Employee {
 
     public void assignToActivity(Activity activity) {
         assignedActivities.add(activity);
-    }
+    } // Written by BAP
 
     
     public boolean isAvailable(int week, int year) {
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
         for (Activity a : assignedActivities) {
-            WeekFields weekFields = WeekFields.of(Locale.getDefault());
             int actWeek = a.getStartDate().get(weekFields.weekOfWeekBasedYear());
             int actYear = a.getStartDate().getYear();
             if (actWeek == week && actYear == year) {
                 return false;
             }
         }
+        for (PersonalActivity pa : personalActivities) {
+            int startYear = pa.getStartDate().getYear();
+            int startWeek = pa.getStartDate().get(weekFields.weekOfWeekBasedYear());
+            int endYear = pa.getEndDate().getYear();
+            int endWeek = pa.getEndDate().get(weekFields.weekOfWeekBasedYear());
+
+            boolean afterStart = year > startYear || (year == startYear && week >= startWeek);
+            boolean beforeEnd = year < endYear || (year == endYear && week <= endWeek);
+
+            if (afterStart && beforeEnd) {
+                return false;
+            }
+        }
         return true;
     }
-    public Project getProject(int id) {
+    public Project getProject(int id) { // Written by BAP
         for (Project p : projects) {
             if (p.getID() == id) return p;
         }
 
         return null;
     }
-    public Activity getActivity(String activityID) {
+    public Activity getActivity(String activityID) { // Written by BAP
         for(Activity a : assignedActivities) {
             if(a.getID().equals(activityID)) {return a;}
         }
@@ -73,16 +86,28 @@ public class Employee {
     public void addContribution(int projectID, String activityID, Contribution contribution) {
         getProject(projectID).getActivity(activityID).addContribution(contribution);
     }
-    public boolean deleteActivity(String activityID) {
+    public boolean deleteActivity(String activityID) { // Written by BAP & assert written by MJ
+        // Pre-conditions
+        int orginalSize = assignedActivities.size();
+        assert assignedActivities != null;
+        assert activityID != null;
+        for (Activity activity: assignedActivities) {
+            assert activity != null;
+            assert activity.getID() != null;
+        }
+
         for(int i = 0; i < assignedActivities.size(); i++) {
            if(assignedActivities.get(i).getID().equals(activityID)) {
                assignedActivities.remove(i);
+
+               assert assignedActivities.size() == orginalSize - 1; // Post-condition
                return true;
            }
         }
+        assert assignedActivities.size() == orginalSize; // Post-condition
         return false;
     }
-    public int viewHours(LocalDate date) {
+    public int viewHours(LocalDate date) { // Written by BAP
         int totalRegisteredHours = 0;
         for (Activity a : assignedActivities) {
             List<Contribution> contributions = a.getContributions(this.ID);
