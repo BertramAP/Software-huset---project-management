@@ -67,6 +67,7 @@ public class ProjectTest {
     public void theEmployeeIsTheProjectLeaderOfTheProject(String initials) {// Written by AK
         if (appHolder.getCurrentProject().getProjectLeader() == null) {
             Employee projectLeader = appHolder.getApp().createEmployee(initials);
+            if(projectLeader == null) {projectLeader = appHolder.getApp().getEmployee(initials);} // If the employee exists
             System.out.println(projectLeader.getID());
             appHolder.getCurrentProject().assignProjectLeader(projectLeader);
         } else {
