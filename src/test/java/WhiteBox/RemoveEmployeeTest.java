@@ -18,8 +18,8 @@ public class RemoveEmployeeTest {
 
     @Test
     public void testTC1RemoveExistingEmployeeFromNonEmptyList() {
-        this.project.assignEmploye(new Employee("huba"));
-        this.project.assignEmploye(new Employee("bap"));
+        this.project.assignEmployee(new Employee("huba"));
+        this.project.assignEmployee(new Employee("bap"));
 
         this.project.removeEmployee("huba");
 
@@ -29,7 +29,7 @@ public class RemoveEmployeeTest {
 
     @Test
     public void testTC2RemoveNonExistingEmployeeFromNonEmptyList() {
-        this.project.assignEmploye(new Employee("bap"));
+        this.project.assignEmployee(new Employee("bap"));
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
                 this.project.removeEmployee("huba"));

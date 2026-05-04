@@ -11,7 +11,7 @@ public class Project {
     private Employee projectLeader;
     private LocalDate startDate;
     private LocalDate endDate;
-    private List<Employee> employees;
+    public List<Employee> employees;
     private List<Activity> activities;
 
     public Project(int id, String name) {
@@ -22,12 +22,16 @@ public class Project {
         this.projectLeader = null;
     }
 
-    public void assignEmploye(Employee employee) {
+    public void assignEmployee(Employee employee) {
         this.employees.add(employee);
     }
     public void assignProjectLeader(Employee employee) { // Written by AK
         if (this.projectLeader != null) {
             throw new IllegalStateException("Project already has a project leader");
+        }
+        // Add the project leader to employeelist
+        if (!this.employees.contains(employee)) {
+            assignEmployee(employee);
         }
         this.projectLeader = employee;
     }

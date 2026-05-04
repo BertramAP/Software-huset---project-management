@@ -85,7 +85,7 @@ public class ProjectApp {
         Employee user = getEmployee(employeeId);
         if (user == null) throw new IllegalArgumentException("User does not exist");
 
-        project.assignEmploye(user);
+        project.assignEmployee(user);
     }
     public List<Project> getProjects() {return projects;} // Written by BAP
     public boolean deleteUser(String UserID) { // Written by BAP
