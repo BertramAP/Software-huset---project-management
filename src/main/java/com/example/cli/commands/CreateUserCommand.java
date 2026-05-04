@@ -28,7 +28,7 @@ public class CreateUserCommand extends AbstractCommand {
         if (args.length < 2)
             throw new IllegalArgumentException("Usage: " + getUsage());
 
-        Employee user = app.createUser(args[1]);
+        Employee user = app.createEmployee(args[1]);
         System.out.println("Created user " + args[1] + " with ID " + user.getID());
         return true;
     }

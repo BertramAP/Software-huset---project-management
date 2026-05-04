@@ -26,6 +26,7 @@ public class Project {
         this.employees.add(employee);
     }
     public void assignProjectLeader(Employee employee) { // Written by AK
+        System.out.println(employee.getID());
         if (this.projectLeader != null) {
             throw new IllegalStateException("Project already has a project leader");
         }

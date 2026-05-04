@@ -11,7 +11,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import java.time.LocalDate;
 
 public class EmployeeTest {
     Employee employee;
@@ -25,7 +24,7 @@ public class EmployeeTest {
     @Given("there is an employee with initials {string}")
     public void thereIsAnEmployeeWithInitials(String string) { // Written by BAP
         this.employee = new Employee(string);
-        appHolder.getApp().createUser(string);
+        appHolder.getApp().createEmployee(string);
         appHolder.setCurrentEmployee(this.employee);
     }
 
@@ -93,7 +92,7 @@ public class EmployeeTest {
     @And("the employee {string} has registered {int} hours on activity {string} under project {string} on date {string}")
     public void theEmployeeHasRegisteredHoursOnActivityOnDate(String employeeID, int hours, String activityName, String projectName, String date) { // Written by BAP
         // Write code here that turns the phrase above into concrete actions
-        appHolder.getApp().createUser(employeeID);
+        appHolder.getApp().createEmployee(employeeID);
 
         String[] splitString = date.split("-");
         LocalDate localDate = LocalDate.of(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), Integer.parseInt(splitString[2]));

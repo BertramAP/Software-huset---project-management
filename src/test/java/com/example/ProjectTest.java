@@ -66,7 +66,8 @@ public class ProjectTest {
     @Then("the employee {string} is the project leader of the project")
     public void theEmployeeIsTheProjectLeaderOfTheProject(String initials) {// Written by AK
         if (appHolder.getCurrentProject().getProjectLeader() == null) {
-            Employee projectLeader = appHolder.getApp().createUser(initials);
+            Employee projectLeader = appHolder.getApp().createEmployee(initials);
+            System.out.println(projectLeader.getID());
             appHolder.getCurrentProject().assignProjectLeader(projectLeader);
         } else {
             assertEquals(initials, appHolder.getCurrentProject().getProjectLeader().getID());

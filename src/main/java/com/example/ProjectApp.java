@@ -7,6 +7,7 @@ import java.util.List;
 import com.example.errors.DuplicateProjectNameException;
 
 public class ProjectApp {
+    private List<Activity> activities = new ArrayList<>();
     private List<Employee> employees = new ArrayList<>();
     private List<Project> projects = new ArrayList<>();
 
@@ -33,16 +34,17 @@ public class ProjectApp {
         return null;
     }
 
-    public Employee createUser(String name) { // Written by BAP
-        boolean userExists = employees.stream().anyMatch(e -> e.getID().equals(name));
+    public Employee createEmployee(String name) { // Written by BAP
+        boolean empExists = employees.stream().anyMatch(e -> e.getID().equals(name));
 
-        if(userExists) {
+        if(empExists) {
             return null;
         }
 
-        Employee user = new Employee(name);
-        employees.add(user);
-        return user;
+        Employee emp = new Employee(name);
+        employees.add(emp);
+        System.out.println("hi");
+        return emp;
     }
 
     public Employee getEmployee(String name) {
