@@ -7,7 +7,6 @@ import java.util.List;
 import com.example.errors.DuplicateProjectNameException;
 
 public class ProjectApp {
-    private List<Activity> activities = new ArrayList<>();
     private List<Employee> employees = new ArrayList<>();
     private List<Project> projects = new ArrayList<>();
 
