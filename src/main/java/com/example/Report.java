@@ -1,6 +1,6 @@
 package com.example;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Report {
     String title;
@@ -8,6 +8,7 @@ public class Report {
     String employeeCount;
     String projectLeader;
     String activityCount;
+    String[] employees;
 
     public String getTitle() {
         return title;
@@ -29,15 +30,40 @@ public class Report {
         return activityCount;
     }
 
+    private String[] mergeArrays(String[] first, String[] second) {
+        String[] result = new String[first.length + second.length];
+        System.arraycopy(first, 0, result, 0, first.length);
+        System.arraycopy(second, 0, result, first.length, second.length);
+        return result;
+    }
+
     Report(Project project) {
         float totalHalfHours = project.getTimeUsed();
         this.title = project.getName();
         String hours = Double.toString(totalHalfHours / 2.);
         if (hours.endsWith(".0")) hours = hours.substring(0, hours.length()-2);
         this.hours = hours;
-        this.employeeCount = "[Count]";
+        this.employeeCount = "" + project.employees.size();
         this.projectLeader = project.getProjectLeader() == null ? "[NONE]" : project.getProjectLeader().getID();
         this.activityCount = "" + project.getActivities().size();
+
+        if (project.employees.isEmpty()) {
+            employees = new String[] { "No registered employees" };
+        }
+        // Gather all employees into a String[]
+        ArrayList<String> employees = new ArrayList<>();
+        for (Employee employee : project.employees) {
+            employees.add(employee.getID());
+        }
+        if (project.employees.isEmpty()) {
+            this.employees = new String[] { "No registered employees" };
+        }
+        else {
+            this.employees = new String[employees.size()];
+            for (int i = 0; i < employees.size(); i++) {
+                this.employees[i] = employees.get(i); // Can't figure out how to use .toArray
+            }
+        }
     }
 
     public static int getLongestStringLength(String[] strings) {
@@ -78,13 +104,15 @@ public class Report {
         String employeeCountString = "Employee Count: " + getEmployeeCount();
         String projectLeaderString = "Project Leader: " + getProjectLeader();
         String activityCountString = "Activity Count: " + getActivityCount();
-        int contentLength = getLongestStringLength( new String[] {
+        String employeeTitle = "Employees";
+        int contentLength = getLongestStringLength( mergeArrays(new String[] {
                 titleString,
                 hoursString,
                 employeeCountString,
                 projectLeaderString,
-                activityCountString
-        });
+                activityCountString,
+                employeeTitle
+                }, employees));
         contentLength += 2; // One character margin to project box sidelines
 
         // Printing
@@ -95,6 +123,11 @@ public class Report {
         printCenteredText(employeeCountString, contentLength);
         printCenteredText(hoursString, contentLength);
         printCenteredText(activityCountString, contentLength);
+        printHorizontalLine(contentLength);
+        printCenteredText(employeeTitle, contentLength);
+        for (String employee: employees) {
+            printCenteredText(employee, contentLength);
+        }
         printHorizontalLine(contentLength);
     }
 }

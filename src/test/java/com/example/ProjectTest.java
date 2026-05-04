@@ -1,12 +1,9 @@
 package com.example;
 
-import io.cucumber.java.PendingException;
-import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en_old.Ac;
 
 import java.time.LocalDate;
 
@@ -32,7 +29,7 @@ public class ProjectTest {
 
     @And("the employee {string} is assigned to the project")
     public void the_employee_is_assigned_to_the_project(String initials) {
-        this.project.assignEmploye(appHolder.getCurrentEmployee());
+        this.project.assignEmployee(appHolder.getCurrentEmployee());
     }
 
     @And("the project has an activity with name {string}")
@@ -69,8 +66,8 @@ public class ProjectTest {
     @Then("the employee {string} is the project leader of the project")
     public void theEmployeeIsTheProjectLeaderOfTheProject(String initials) {// Written by AK
         if (appHolder.getCurrentProject().getProjectLeader() == null) {
-            appHolder.getCurrentProject().assignProjectLeader(appHolder.getCurrentEmployee());
-            appHolder.getApp().createUser(initials);
+            Employee projectLeader = appHolder.getApp().createUser(initials);
+            appHolder.getCurrentProject().assignProjectLeader(projectLeader);
         } else {
             assertEquals(initials, appHolder.getCurrentProject().getProjectLeader().getID());
         }
