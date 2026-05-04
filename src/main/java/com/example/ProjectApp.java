@@ -38,13 +38,11 @@ public class ProjectApp {
         boolean empExists = employees.stream().anyMatch(e -> e.getID().equals(name));
 
         if(empExists) {
-            System.out.println("hi2");
             return null;
         }
 
         Employee emp = new Employee(name);
         employees.add(emp);
-        System.out.println("hi");
         return emp;
     }
 

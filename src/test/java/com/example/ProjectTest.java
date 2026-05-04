@@ -96,4 +96,10 @@ public class ProjectTest {
     public void testTheReportPrinting() {
         projectReport.printReport();
     }
+
+    @Then("there is a total of {int} projects")
+    public void thereIsATotalOfProjects(int num) {
+        // Write code here that turns the phrase above into concrete actions
+        assertEquals(appHolder.getApp().getProjects().size(), num);
+    }
 }

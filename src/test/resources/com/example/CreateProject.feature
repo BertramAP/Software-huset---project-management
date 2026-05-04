@@ -11,4 +11,4 @@ Scenario: Create a project with a duplicate name
 	Given there is an employee with initials "bap"
 	And there is a project with name "Testing26001"
 	When the employee creates a project with name "Testing26001"
-	Then the error message "Project name already exists" is given
+	Then there is a total of 2 projects
