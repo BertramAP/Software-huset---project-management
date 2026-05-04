@@ -109,11 +109,9 @@ public class Project {
     }
 
     public boolean assignToActivity(String activityID, Employee emp) { // Written by BAP
-        try {
-            getActivity(activityID).addEmployee(emp);
-        } catch (Exception e) {
-            return false;
-        }
-    return true;
+        Activity activity = getActivity(activityID);
+        if (activity == null) return false;
+        activity.addEmployee(emp);
+        return true;
     }
 }
