@@ -40,11 +40,21 @@ public class Report {
         this.activityCount = "" + project.getActivities().size();
     }
 
-    private int getLongestStringLength(String[] strings) {
+    public static int getLongestStringLength(String[] strings) {
+        assert strings != null; // pre-condition
+
+        for (String string: strings) {
+            assert string != null; // also post condition
+        }
+
         if (strings.length == 0) return 0;
         int longest = strings[0].length();
         for (String string: strings) {
             if (string.length() > longest) longest = string.length();
+        }
+        assert longest >= 0; // Post condition
+        for (String string: strings) {
+            assert string.length() <= longest; // Post condition
         }
         return longest;
     }

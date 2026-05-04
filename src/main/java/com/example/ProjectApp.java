@@ -56,12 +56,25 @@ public class ProjectApp {
     }
 
     public Activity createActivity(int projectId, String id, LocalDate startDate, LocalDate endDate, int budgetHalfHours, String creatorID) {
+        // Pre-conditions
+        assert id != null;
+        assert startDate != null;
+        assert endDate != null;
+        assert creatorID != null;
+        assert budgetHalfHours >= 0;
+
         Project project = getProject(projectId);
         if (project == null) throw new IllegalArgumentException("Project does not exist");
 
         if (project.getActivity(id) != null) throw new IllegalArgumentException("Activity already exists!");
         Activity activity = new Activity(id, startDate, endDate, budgetHalfHours, creatorID);
         project.addActivity(activity);
+
+        // Post-conditions
+        assert activity != null;
+        assert project.getActivity(id) != null;
+        assert project.getActivity(id).equals(activity);
+
         return activity;
     }
 

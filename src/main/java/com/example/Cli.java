@@ -24,6 +24,7 @@ public class Cli {
         Scanner scanner = new Scanner(System.in);
 
         login(scanner);
+        System.out.println("Type \"help\" to view a list of available commands");
 
         while (true) {
             System.out.print("> ");
