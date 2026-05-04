@@ -46,12 +46,25 @@ public class Employee {
     } // Written by BAP
 
     
-    public boolean isAvailable(int week, int year) { // Written by OFK
+    public boolean isAvailable(int week, int year) {// Written by OFK
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
         for (Activity a : assignedActivities) {
-            WeekFields weekFields = WeekFields.of(Locale.getDefault());
             int actWeek = a.getStartDate().get(weekFields.weekOfWeekBasedYear());
             int actYear = a.getStartDate().getYear();
             if (actWeek == week && actYear == year) {
+                return false;
+            }
+        }
+        for (PersonalActivity pa : personalActivities) {
+            int startYear = pa.getStartDate().getYear();
+            int startWeek = pa.getStartDate().get(weekFields.weekOfWeekBasedYear());
+            int endYear = pa.getEndDate().getYear();
+            int endWeek = pa.getEndDate().get(weekFields.weekOfWeekBasedYear());
+
+            boolean afterStart = year > startYear || (year == startYear && week >= startWeek);
+            boolean beforeEnd = year < endYear || (year == endYear && week <= endWeek);
+
+            if (afterStart && beforeEnd) {
                 return false;
             }
         }

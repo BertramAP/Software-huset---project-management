@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 840" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <!-- ============ SYSTEM BOUNDARY ============ -->
+  <rect x="240" y="40" width="620" height="780" fill="none" stroke="black" stroke-dasharray="6 4" stroke-width="1.2"/>
+  <text x="550" y="62" text-anchor="middle" font-weight="bold" font-size="13">
+    Softwarehuset A/S — Project Planning &amp; Time Registration System
+  </text>
+
+  <!-- ============ ACTOR (stick figure) ============ -->
+  <g stroke="black" stroke-width="1.6" fill="none">
+    <!-- head -->
+    <circle cx="100" cy="410" r="12" fill="white"/>
+    <!-- body -->
+    <line x1="100" y1="422" x2="100" y2="452"/>
+    <!-- arms -->
+    <line x1="82" y1="432" x2="118" y2="432"/>
+    <!-- legs -->
+    <line x1="100" y1="452" x2="86" y2="472"/>
+    <line x1="100" y1="452" x2="114" y2="472"/>
+  </g>
+  <text x="100" y="490" text-anchor="middle" font-weight="bold">Employee</text>
+
+  <!-- ============ USE CASES ============ -->
+  <!-- regular (blue) -->
+  <g>
+    <ellipse cx="420" cy="105" rx="100" ry="25" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.4"/>
+    <text x="420" y="110" text-anchor="middle">Create Project</text>
+
+    <ellipse cx="420" cy="175" rx="100" ry="25" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.4"/>
+    <text x="420" y="180" text-anchor="middle">Create Activity</text>
+
+    <ellipse cx="420" cy="245" rx="115" ry="25" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.4"/>
+    <text x="420" y="250" text-anchor="middle">Assign Employee to Activity</text>
+
+    <ellipse cx="420" cy="315" rx="105" ry="25" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.4"/>
+    <text x="420" y="320" text-anchor="middle">Assign Project Leader</text>
+
+    <ellipse cx="420" cy="385" rx="100" ry="25" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.4"/>
+    <text x="420" y="390" text-anchor="middle">Register Time</text>
+
+    <ellipse cx="420" cy="455" rx="105" ry="25" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.4"/>
+    <text x="420" y="460" text-anchor="middle">Edit Registered Time</text>
+
+    <ellipse cx="420" cy="525" rx="110" ry="25" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.4"/>
+    <text x="420" y="530" text-anchor="middle">View Registered Hours</text>
+
+    <ellipse cx="420" cy="595" rx="110" ry="25" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.4"/>
+    <text x="420" y="600" text-anchor="middle">Register Fixed Activity</text>
+  </g>
+
+  <!-- project-leader-only (green) -->
+  <g>
+    <ellipse cx="420" cy="665" rx="120" ry="25" fill="#d5e8d4" stroke="#82b366" stroke-width="1.4"/>
+    <text x="420" y="670" text-anchor="middle">Check Employee Availability</text>
+
+    <ellipse cx="420" cy="735" rx="120" ry="25" fill="#d5e8d4" stroke="#82b366" stroke-width="1.4"/>
+    <text x="420" y="740" text-anchor="middle">Generate Project Report</text>
+  </g>
+
+  <!-- ============ ASSOCIATIONS (actor → use case, no arrowheads) ============ -->
+  <g stroke="black" stroke-width="1.1" fill="none">
+    <line x1="118" y1="432" x2="320" y2="105"/>
+    <line x1="118" y1="432" x2="320" y2="175"/>
+    <line x1="118" y1="432" x2="305" y2="245"/>
+    <line x1="118" y1="432" x2="315" y2="315"/>
+    <line x1="118" y1="432" x2="320" y2="385"/>
+    <line x1="118" y1="432" x2="315" y2="455"/>
+    <line x1="118" y1="432" x2="310" y2="525"/>
+    <line x1="118" y1="432" x2="310" y2="595"/>
+    <line x1="118" y1="432" x2="300" y2="665"/>
+    <line x1="118" y1="432" x2="300" y2="735"/>
+  </g>
+
+  <!-- ============ CONSTRAINT NOTE ============ -->
+  <!-- dog-eared rectangle for a UML note -->
+  <g>
+    <polygon points="700,680 820,680 840,700 840,730 700,730"
+             fill="#fff8c4" stroke="black" stroke-width="1.2"/>
+    <polyline points="820,680 820,700 840,700"
+              fill="none" stroke="black" stroke-width="1.2"/>
+    <text x="770" y="710" text-anchor="middle" font-size="12">{role = project leader}</text>
+  </g>
+
+  <!-- dashed attach lines from the note to the two PL-only use cases -->
+  <g stroke="black" stroke-width="1.1" fill="none" stroke-dasharray="5 4">
+    <line x1="700" y1="700" x2="540" y2="665"/>
+    <line x1="700" y1="710" x2="540" y2="735"/>
+  </g>
+</svg>

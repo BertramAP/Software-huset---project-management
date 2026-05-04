@@ -70,6 +70,11 @@ public class EmployeeTest {
         assertFalse(employee.isAvailable(checkedWeek, checkedYear));
     }
 
+    @Then("the employee {string} is not listed as available in week {int} of {int}")
+    public void the_employee_is_not_listed_as_available_in_week_of(String initials, int week, int year) {
+        assertFalse(appHolder.getCurrentEmployee().isAvailable(week, year));
+    }
+
     @And("the employee {string} is assigned to an activity in week {int} of {int}")
     public void the_employee_is_assigned_to_an_activity_in_week_of(String initials, int week, int year) { // Written by OFK
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
