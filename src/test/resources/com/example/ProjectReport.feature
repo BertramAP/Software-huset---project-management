@@ -10,6 +10,7 @@ Scenario: View total time spent on project
 	When the project leader requests a project report on project "Testing26001"
 	Then the report shows "20" total hours spent on the project
 	# Then test the report printing
+	# ^^^Doesn't run any asserts, just prints
 
 Scenario: View report for non-existing activity
 	Given there is a project with name "Testing26001"

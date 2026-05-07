@@ -2,6 +2,7 @@ package com.example;
 
 import java.util.ArrayList;
 
+/* File written by MJ */
 public class Report {
     String title;
     String hours;
@@ -70,7 +71,7 @@ public class Report {
         assert strings != null; // pre-condition
 
         for (String string: strings) {
-            assert string != null; // also post condition
+            assert string != null; // also pre-condtioin
         }
 
         if (strings.length == 0) return 0;
