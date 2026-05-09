@@ -5,17 +5,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.errors.DuplicateProjectNameException;
-
 public class ProjectApp {
     private List<Activity> activities = new ArrayList<>();
     private List<Employee> employees = new ArrayList<>();
     private List<Project> projects = new ArrayList<>();
 
+    // Written by DIS, contracted (assert statements) by MJ
     public Project createProject(String name) throws DuplicateProjectNameException {
+        // Pre conditions
+        assert name != null;
+        assert projects != null;
+        assert projects.size() < 999;
+        // For post condition
+        int originalSize = projects.size();
+
         int year = LocalDate.now().getYear();
         int id =  (year - 2000) * 1000 + projects.size() + 1; // Limits the amount of projects per year to 999
         Project project = new Project(id, name);
         projects.add(project);
+
+        assert projects.size() == originalSize + 1; // Post condition
+        assert projects.contains(project); // Post condition
         return project;
     }
 
