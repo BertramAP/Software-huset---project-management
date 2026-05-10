@@ -48,6 +48,7 @@ public class Cli {
             } catch (Exception error) {
                 System.out.println(error.getMessage());
             }
+            System.out.println();
         }
         scanner.close();
     }
