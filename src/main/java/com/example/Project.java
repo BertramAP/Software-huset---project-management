@@ -110,7 +110,8 @@ public class Project {
 
     public boolean assignToActivity(String activityID, Employee emp) { // Written by BAP
         Activity activity = getActivity(activityID);
-        if (activity == null) return false;
+        if (activity == null) return false; // HERE
+        if (!hasEmployee(emp.getID())) assignEmployee(emp);
         activity.addEmployee(emp);
         return true;
     }
