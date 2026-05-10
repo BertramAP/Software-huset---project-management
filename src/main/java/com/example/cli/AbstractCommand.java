@@ -22,7 +22,7 @@ public abstract class AbstractCommand {
     }
 
     abstract public void onCommand(Scanner scanner);
-    public String getUsage() { return usage; };
+    public String getUsage() { return usage; }
     abstract public String getDescription();
 
     protected int getIntegerInput(Scanner scanner, String prompt, String description) {
@@ -35,7 +35,7 @@ public abstract class AbstractCommand {
     }
     protected int getIntegerInput(Scanner scanner) {
         System.out.print("> ");
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     protected String getStringInput(Scanner scanner, String prompt) {
