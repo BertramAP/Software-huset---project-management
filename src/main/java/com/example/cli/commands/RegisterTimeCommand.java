@@ -1,6 +1,7 @@
 package com.example.cli.commands;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 import com.example.Activity;
 import com.example.Cli;
@@ -9,6 +10,7 @@ import com.example.Project;
 import com.example.ProjectApp;
 import com.example.cli.AbstractCommand;
 
+// Written by DIS
 public class RegisterTimeCommand extends AbstractCommand {
 
     public RegisterTimeCommand(ProjectApp app, Cli cli) {
@@ -17,7 +19,7 @@ public class RegisterTimeCommand extends AbstractCommand {
 
     @Override
     public String getUsage() {
-        return "register-time <project-id> <activity-name> <half-hours>";
+        return "register-time";
     }
 
     @Override
@@ -26,26 +28,21 @@ public class RegisterTimeCommand extends AbstractCommand {
     }
 
     @Override
-    public boolean onCommand(String[] args) {
-        if (!args[0].equals("register-time"))
-            return false;
-        if (args.length < 4)
-            throw new IllegalArgumentException("Usage: " + getUsage());
-
-        int projectId = Integer.parseInt(args[1]);
+    public void onCommand(Scanner scanner) {
+        int projectId = promptForProjectId(scanner);
         Project project = app.getProject(projectId);
         if (project == null)
             throw new IllegalArgumentException("Project does not exist!");
 
-        Activity activity = project.getActivity(args[2]);
+        String activityName = getStringInput(scanner, "Select an activity:");
+        Activity activity = project.getActivity(activityName);
         if (activity == null)
             throw new IllegalArgumentException("Activity does not exist!");
 
-        int halfHours = Integer.parseInt(args[3]);
+        int halfHours = getIntegerInput(scanner, "How many half hours have you completed on this task?");
         activity.addContribution(
                 new Contribution(cli.getCurrentUser(), halfHours, LocalDate.now()));
 
         System.out.println("Successfully registered " + halfHours + " half hours to " + activity.getID());
-        return true;
     }
 }

@@ -6,6 +6,9 @@ import com.example.Project;
 import com.example.ProjectApp;
 import com.example.cli.AbstractCommand;
 
+import java.util.Scanner;
+
+// Written by DIS
 public class AssignLeaderCommand extends AbstractCommand {
 
     public AssignLeaderCommand(ProjectApp app, Cli cli) {
@@ -14,7 +17,7 @@ public class AssignLeaderCommand extends AbstractCommand {
 
     @Override
     public String getUsage() {
-        return "assign-leader <project-id> <username>";
+        return "assign-leader";
     }
 
     @Override
@@ -23,23 +26,17 @@ public class AssignLeaderCommand extends AbstractCommand {
     }
 
     @Override
-    public boolean onCommand(String[] args) {
-        if (!args[0].equals("assign-leader"))
-            return false;
-        if (args.length < 2)
-            throw new IllegalArgumentException("Usage: " + getUsage());
-
-        Employee employee = app.getEmployee(args[2]);
+    public void onCommand(Scanner scanner) {
+        Employee employee = app.getEmployee(getStringInput(scanner, "Type a username:"));
         if (employee == null)
             throw new IllegalArgumentException("User does not exist!");
 
-        int projectId = Integer.parseInt(args[1]);
+        int projectId = promptForProjectId(scanner);
         Project project = app.getProject(projectId);
         if (project == null)
             throw new IllegalArgumentException("Project does not exist!");
 
         project.assignProjectLeader(employee);
-        System.out.println("Assigned " + employee.getID() + " to " + args[2]);
-        return true;
+        System.out.println("Assigned " + employee.getID() + " to " + project.getName());
     }
 }

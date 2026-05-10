@@ -5,6 +5,9 @@ import com.example.Employee;
 import com.example.ProjectApp;
 import com.example.cli.AbstractCommand;
 
+import java.util.Scanner;
+
+// Written by DIS
 public class AssignActivityCommand extends AbstractCommand {
 
     public AssignActivityCommand(ProjectApp app, Cli cli) {
@@ -13,7 +16,7 @@ public class AssignActivityCommand extends AbstractCommand {
 
     @Override
     public String getUsage() {
-        return "assign-activity <project-id> <activity-name> <username>";
+        return "assign-activity";
     }
 
     @Override
@@ -22,20 +25,17 @@ public class AssignActivityCommand extends AbstractCommand {
     }
 
     @Override
-    public boolean onCommand(String[] args) {
-        if (!args[0].equals("assign-activity"))
-            return false;
-        if (args.length < 3)
-            throw new IllegalArgumentException("Usage: " + getUsage());
+    public void onCommand(Scanner scanner) {
+        int projectId = promptForProjectId(scanner);
+        String activityName = getStringInput(scanner, "Choose an activity:");
+        String username = getStringInput(scanner, "Which employee should be assigned?");
 
-        Employee employee = app.getEmployee(args[3]);
+        Employee employee = app.getEmployee(username);
         if (employee == null)
             throw new IllegalArgumentException("User does not exist!");
 
-        int projectId = Integer.parseInt(args[1]);
-        if (!app.assignToActivity(projectId, args[2], employee))
-            throw new RuntimeException("An error ocurred");
-        System.out.println("Assigned " + employee.getID() + " to " + args[2]);
-        return true;
+        if (!app.assignToActivity(projectId, activityName, employee))
+            throw new RuntimeException("An error occurred");
+        System.out.println("Assigned " + employee.getID() + " to " + activityName);
     }
 }
