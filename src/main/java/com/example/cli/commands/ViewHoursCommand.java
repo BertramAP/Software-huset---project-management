@@ -8,6 +8,7 @@ import com.example.cli.AbstractCommand;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+// Written by MJ
 public class ViewHoursCommand extends AbstractCommand {
     public ViewHoursCommand(String usage, ProjectApp app, Cli cli) {
         super(usage, app, cli);

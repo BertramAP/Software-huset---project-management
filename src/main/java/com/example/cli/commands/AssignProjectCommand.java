@@ -7,6 +7,7 @@ import com.example.ProjectApp;
 import com.example.cli.AbstractCommand;
 
 import java.util.Scanner;
+
 // Written by BAP
 public class AssignProjectCommand extends AbstractCommand {
 
@@ -33,6 +34,4 @@ public class AssignProjectCommand extends AbstractCommand {
     public String getDescription() {
         return "Assign an Employee to a project";
     }
-
-
 }
