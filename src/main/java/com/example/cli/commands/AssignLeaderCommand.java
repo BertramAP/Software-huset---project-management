@@ -17,14 +17,14 @@ public class AssignLeaderCommand extends AbstractCommand {
 
     @Override
     public String getDescription() {
-        return "Assigns a user as the leader of a project";
+        return "Assigns an employee as the leader of a project";
     }
 
     @Override
     public void onCommand(Scanner scanner) {
-        Employee employee = app.getEmployee(getStringInput(scanner, "Type a username:"));
+        Employee employee = app.getEmployee(getStringInput(scanner, "Type the employee's initals:"));
         if (employee == null)
-            throw new IllegalArgumentException("User does not exist!");
+            throw new IllegalArgumentException("Employee does not exist!");
 
         int projectId = promptForProjectId(scanner);
         Project project = app.getProject(projectId);
