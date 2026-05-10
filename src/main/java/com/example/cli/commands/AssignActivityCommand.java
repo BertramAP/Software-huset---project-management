@@ -31,6 +31,6 @@ public class AssignActivityCommand extends AbstractCommand {
 
         if (!app.assignToActivity(projectId, activityName, employee))
             throw new RuntimeException("An error occurred");
-        System.out.println("Assigned " + employee.getID() + " to " + activityName + "\n");
+        System.out.println("Assigned " + employee.getID() + " to " + activityName);
     }
 }

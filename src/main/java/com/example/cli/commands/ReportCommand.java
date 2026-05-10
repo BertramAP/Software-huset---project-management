@@ -7,6 +7,7 @@ import com.example.cli.AbstractCommand;
 
 import java.util.Scanner;
 
+// Written by DIS
 public class ReportCommand extends AbstractCommand {
 
     public ReportCommand(String usage, ProjectApp app, Cli cli) {
@@ -23,6 +24,5 @@ public class ReportCommand extends AbstractCommand {
         for (Project project : app.getProjects()) {
             project.generateReport().printReport();
         }
-        System.out.println();
     }
 }
