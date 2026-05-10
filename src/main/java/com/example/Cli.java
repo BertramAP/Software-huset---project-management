@@ -88,9 +88,10 @@ public class Cli {
         commands.put("assign-leader", new AssignLeaderCommand("assign-leader", app, this));
         commands.put("create-activity", new CreateActivityCommand("create-activity", app, this));
         commands.put("create-project", new CreateProjectCommand("create-project", app, this));
-        commands.put("create-employee", new CreateEmployeeCommand("create-employee", app, this));
+        commands.put("create-user", new CreateEmployeeCommand("create-user", app, this));
         commands.put("register-time", new RegisterTimeCommand("register-time", app, this));
         commands.put("report", new ReportCommand("report", app, this));
+        commands.put("view-hours-on-date", new ViewHoursCommand("view-hours-on-date", app, this));
         commands.put("assign-project", new AssignProjectCommand("assign-project", app, this));
     }
 

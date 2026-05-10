@@ -115,7 +115,7 @@ public class Project {
         if (!emp.isAvailable(activity.getStartDate().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR), activity.getStartDate().getYear())) throw new IllegalArgumentException("Employee is not available");
         if (!hasEmployee(emp.getID())) assignEmployee(emp);
         activity.addEmployee(emp);
+        emp.assignToActivity(activity); // Add activity to employees own personal list
         return true;
     }
-
 }
