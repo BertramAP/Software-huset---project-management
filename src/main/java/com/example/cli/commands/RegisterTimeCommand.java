@@ -38,6 +38,6 @@ public class RegisterTimeCommand extends AbstractCommand {
         activity.addContribution(
                 new Contribution(cli.getCurrentUser(), halfHours, LocalDate.now()));
 
-        System.out.println("Successfully registered " + halfHours + " half hours to " + activity.getID());
+        System.out.println("Successfully registered " + halfHours + " half hours to " + activity.getID() + "\n");
     }
 }

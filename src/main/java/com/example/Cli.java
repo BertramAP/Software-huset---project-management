@@ -8,7 +8,7 @@ import com.example.cli.commands.AssignActivityCommand;
 import com.example.cli.commands.AssignLeaderCommand;
 import com.example.cli.commands.CreateActivityCommand;
 import com.example.cli.commands.CreateProjectCommand;
-import com.example.cli.commands.CreateUserCommand;
+import com.example.cli.commands.CreateEmployeeCommand;
 import com.example.cli.commands.RegisterTimeCommand;
 import com.example.cli.commands.ReportCommand;
 
@@ -94,7 +94,7 @@ public class Cli {
         commands.put("assign-leader", new AssignLeaderCommand("assign-leader", app, this));
         commands.put("create-activity", new CreateActivityCommand("create-activity", app, this));
         commands.put("create-project", new CreateProjectCommand("create-project", app, this));
-        commands.put("create-user", new CreateUserCommand("create-user", app, this));
+        commands.put("create-employee", new CreateEmployeeCommand("create-employee", app, this));
         commands.put("register-time", new RegisterTimeCommand("register-time", app, this));
         commands.put("report", new ReportCommand("report", app, this));
     }
