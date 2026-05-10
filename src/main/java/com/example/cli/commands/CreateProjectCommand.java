@@ -23,6 +23,6 @@ public class CreateProjectCommand extends AbstractCommand {
     public void onCommand(Scanner scanner) {
         String name = getStringInput(scanner, "Choose a name for the project:");
         Project project = app.createProject(name);
-        System.out.println("Created project " + name + " with ID " + project.getID());
+        System.out.println("Created project " + name + " with ID " + project.getID() + "\n");
     }
 }

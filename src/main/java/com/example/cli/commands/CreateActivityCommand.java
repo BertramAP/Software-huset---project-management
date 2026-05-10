@@ -28,6 +28,6 @@ public class CreateActivityCommand extends AbstractCommand {
 
         app.createActivity(projectId, name, firstDayOfWeek(startWeek), firstDayOfWeek(endWeek), halfHours, cli.getCurrentUser().getID());
 
-        System.out.println("Created activity " + name);
+        System.out.println("Created activity " + name + "\n");
     }
 }

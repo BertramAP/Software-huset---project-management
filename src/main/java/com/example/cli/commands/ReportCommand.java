@@ -23,5 +23,6 @@ public class ReportCommand extends AbstractCommand {
         for (Project project : app.getProjects()) {
             project.generateReport().printReport();
         }
+        System.out.println();
     }
 }

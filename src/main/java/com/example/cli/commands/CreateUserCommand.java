@@ -23,6 +23,6 @@ public class CreateUserCommand extends AbstractCommand {
     public void onCommand(Scanner scanner) {
         String name = getStringInput(scanner, "Type the initials of the user:");
         Employee user = app.createEmployee(name);
-        System.out.println("Created user " + name + " with ID " + user.getID());
+        System.out.println("Created user " + name + " with ID " + user.getID() + "\n");
     }
 }
