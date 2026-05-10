@@ -5,6 +5,9 @@ import com.example.Employee;
 import com.example.ProjectApp;
 import com.example.cli.AbstractCommand;
 
+import java.util.Scanner;
+
+// Written by DIS
 public class CreateUserCommand extends AbstractCommand {
 
     public CreateUserCommand(ProjectApp app, Cli cli) {
@@ -13,7 +16,7 @@ public class CreateUserCommand extends AbstractCommand {
 
     @Override
     public String getUsage() {
-        return "create-user <name>";
+        return "create-user";
     }
 
     @Override
@@ -22,14 +25,9 @@ public class CreateUserCommand extends AbstractCommand {
     }
 
     @Override
-    public boolean onCommand(String[] args) {
-        if (!args[0].equals("create-user"))
-            return false;
-        if (args.length < 2)
-            throw new IllegalArgumentException("Usage: " + getUsage());
-
-        Employee user = app.createEmployee(args[1]);
-        System.out.println("Created user " + args[1] + " with ID " + user.getID());
-        return true;
+    public void onCommand(Scanner scanner) {
+        String name = getStringInput(scanner, "Type the initials of the user:");
+        Employee user = app.createEmployee(name);
+        System.out.println("Created user " + name + " with ID " + user.getID());
     }
 }

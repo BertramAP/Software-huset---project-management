@@ -1,11 +1,12 @@
 package com.example.cli.commands;
 
-import java.time.LocalDate;
+import java.util.Scanner;
 
 import com.example.Cli;
 import com.example.ProjectApp;
 import com.example.cli.AbstractCommand;
 
+// Written by DIS
 public class CreateActivityCommand extends AbstractCommand {
 
     public CreateActivityCommand(ProjectApp app, Cli cli) {
@@ -14,7 +15,7 @@ public class CreateActivityCommand extends AbstractCommand {
 
     @Override
     public String getUsage() {
-        return "create-activity <activity-name> <project-id> <start-date> <end-date> <half-hours>";
+        return "create-activity";
     }
 
     @Override
@@ -23,17 +24,15 @@ public class CreateActivityCommand extends AbstractCommand {
     }
 
     @Override
-    public boolean onCommand(String[] args) {
-        if (!args[0].equals("create-activity"))
-            return false;
-        if (args.length < 6)
-            throw new IllegalArgumentException("Usage: " + getUsage());
+    public void onCommand(Scanner scanner) {
+        String name = getStringInput(scanner, "Choose a name for the activity:");
+        int projectId = promptForProjectId(scanner);
+        int startWeek = getIntegerInput(scanner, "Which week does the activity start?");
+        int endWeek = getIntegerInput(scanner, "Which week does the activity end?");
+        int halfHours = getIntegerInput(scanner, "How many half hours does the activity require?");
 
-        int projectId = Integer.parseInt(args[2]);
-        app.createActivity(projectId, args[1], LocalDate.parse(args[3]), LocalDate.parse(args[4]),
-                Integer.parseInt(args[5]), cli.getCurrentUser().getID());
+        app.createActivity(projectId, name, firstDayOfWeek(startWeek), firstDayOfWeek(endWeek), halfHours, cli.getCurrentUser().getID());
 
-        System.out.println("Created activity " + args[1]);
-        return true;
+        System.out.println("Created activity " + name);
     }
 }

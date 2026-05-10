@@ -5,6 +5,8 @@ import com.example.Project;
 import com.example.ProjectApp;
 import com.example.cli.AbstractCommand;
 
+import java.util.Scanner;
+
 public class ReportCommand extends AbstractCommand {
 
     public ReportCommand(ProjectApp app, Cli cli) {
@@ -22,14 +24,9 @@ public class ReportCommand extends AbstractCommand {
     }
 
     @Override
-    public boolean onCommand(String[] args) {
-        if (!args[0].equals("report"))
-            return false;
-
+    public void onCommand(Scanner scanner) {
         for (Project project : app.getProjects()) {
             project.generateReport().printReport();
         }
-
-        return true;
     }
 }
