@@ -13,13 +13,8 @@ import com.example.cli.AbstractCommand;
 // Written by DIS
 public class RegisterTimeCommand extends AbstractCommand {
 
-    public RegisterTimeCommand(ProjectApp app, Cli cli) {
-        super(app, cli);
-    }
-
-    @Override
-    public String getUsage() {
-        return "register-time";
+    public RegisterTimeCommand(String usage, ProjectApp app, Cli cli) {
+        super(usage, app, cli);
     }
 
     @Override

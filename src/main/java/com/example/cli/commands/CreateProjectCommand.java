@@ -10,13 +10,8 @@ import java.util.Scanner;
 // Written by DIS
 public class CreateProjectCommand extends AbstractCommand {
 
-    public CreateProjectCommand(ProjectApp app, Cli cli) {
-        super(app, cli);
-    }
-
-    @Override
-    public String getUsage() {
-        return "create-project";
+    public CreateProjectCommand(String usage, ProjectApp app, Cli cli) {
+        super(usage, app, cli);
     }
 
     @Override

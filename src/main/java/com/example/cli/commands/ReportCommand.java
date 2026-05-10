@@ -9,13 +9,8 @@ import java.util.Scanner;
 
 public class ReportCommand extends AbstractCommand {
 
-    public ReportCommand(ProjectApp app, Cli cli) {
-        super(app, cli);
-    }
-
-    @Override
-    public String getUsage() {
-        return "report";
+    public ReportCommand(String usage, ProjectApp app, Cli cli) {
+        super(usage, app, cli);
     }
 
     @Override

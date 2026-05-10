@@ -13,14 +13,16 @@ import java.util.stream.Collectors;
 public abstract class AbstractCommand {
     protected ProjectApp app;
     protected Cli cli;
+    protected String usage;
 
-    public AbstractCommand(ProjectApp app, Cli cli) {
+    public AbstractCommand(String usage, ProjectApp app, Cli cli) {
         this.app = app;
         this.cli = cli;
+        this.usage = usage;
     }
 
     abstract public void onCommand(Scanner scanner);
-    abstract public String getUsage();
+    public String getUsage() { return usage; };
     abstract public String getDescription();
 
     protected int getIntegerInput(Scanner scanner, String prompt, String description) {

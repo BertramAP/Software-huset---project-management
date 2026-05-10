@@ -11,13 +11,8 @@ import java.util.Scanner;
 // Written by DIS
 public class AssignLeaderCommand extends AbstractCommand {
 
-    public AssignLeaderCommand(ProjectApp app, Cli cli) {
-        super(app, cli);
-    }
-
-    @Override
-    public String getUsage() {
-        return "assign-leader";
+    public AssignLeaderCommand(String usage, ProjectApp app, Cli cli) {
+        super(usage, app, cli);
     }
 
     @Override

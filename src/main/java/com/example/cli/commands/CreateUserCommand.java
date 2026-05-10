@@ -10,13 +10,8 @@ import java.util.Scanner;
 // Written by DIS
 public class CreateUserCommand extends AbstractCommand {
 
-    public CreateUserCommand(ProjectApp app, Cli cli) {
-        super(app, cli);
-    }
-
-    @Override
-    public String getUsage() {
-        return "create-user";
+    public CreateUserCommand(String usage, ProjectApp app, Cli cli) {
+        super(usage, app, cli);
     }
 
     @Override

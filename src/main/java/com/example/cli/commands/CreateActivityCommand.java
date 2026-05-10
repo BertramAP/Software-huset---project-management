@@ -9,13 +9,8 @@ import com.example.cli.AbstractCommand;
 // Written by DIS
 public class CreateActivityCommand extends AbstractCommand {
 
-    public CreateActivityCommand(ProjectApp app, Cli cli) {
-        super(app, cli);
-    }
-
-    @Override
-    public String getUsage() {
-        return "create-activity";
+    public CreateActivityCommand(String usage, ProjectApp app, Cli cli) {
+        super(usage, app, cli);
     }
 
     @Override

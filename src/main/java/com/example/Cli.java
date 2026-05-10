@@ -90,13 +90,13 @@ public class Cli {
     public void setApp(ProjectApp app) {
         this.app = app;
         commands.clear();
-        commands.put("assign-activity", new AssignActivityCommand(app, this));
-        commands.put("assign-leader", new AssignLeaderCommand(app, this));
-        commands.put("create-activity", new CreateActivityCommand(app, this));
-        commands.put("create-project", new CreateProjectCommand(app, this));
-        commands.put("create-user", new CreateUserCommand(app, this));
-        commands.put("register-time", new RegisterTimeCommand(app, this));
-        commands.put("report", new ReportCommand(app, this));
+        commands.put("assign-activity", new AssignActivityCommand("assign-activity", app, this));
+        commands.put("assign-leader", new AssignLeaderCommand("assign-leader", app, this));
+        commands.put("create-activity", new CreateActivityCommand("create-activity", app, this));
+        commands.put("create-project", new CreateProjectCommand("create-project", app, this));
+        commands.put("create-user", new CreateUserCommand("create-user", app, this));
+        commands.put("register-time", new RegisterTimeCommand("register-time", app, this));
+        commands.put("report", new ReportCommand("report", app, this));
     }
 
     public Employee getCurrentUser() {
