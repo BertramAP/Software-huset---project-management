@@ -32,6 +32,6 @@ public class AssignLeaderCommand extends AbstractCommand {
             throw new IllegalArgumentException("Project does not exist!");
 
         project.assignProjectLeader(employee);
-        System.out.println("Assigned " + employee.getID() + " to " + project.getName() + "\n");
+        System.out.println("Assigned " + employee.getID() + " to " + project.getName() + " as project leader\n");
     }
 }

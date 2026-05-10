@@ -4,13 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import com.example.cli.AbstractCommand;
-import com.example.cli.commands.AssignActivityCommand;
-import com.example.cli.commands.AssignLeaderCommand;
-import com.example.cli.commands.CreateActivityCommand;
-import com.example.cli.commands.CreateProjectCommand;
-import com.example.cli.commands.CreateEmployeeCommand;
-import com.example.cli.commands.RegisterTimeCommand;
-import com.example.cli.commands.ReportCommand;
+import com.example.cli.commands.*;
 
 public class Cli {
     private ProjectApp app;
@@ -97,6 +91,7 @@ public class Cli {
         commands.put("create-employee", new CreateEmployeeCommand("create-employee", app, this));
         commands.put("register-time", new RegisterTimeCommand("register-time", app, this));
         commands.put("report", new ReportCommand("report", app, this));
+        commands.put("assign-project", new AssignProjectCommand("assign-project", app, this));
     }
 
     public Employee getCurrentUser() {
