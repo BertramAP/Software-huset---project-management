@@ -6,15 +6,15 @@ import java.time.temporal.WeekFields;
 import java.util.Locale;
 
 public class Employee {
-    private String ID;
-    private List<Project> projects;
-    private List<PersonalActivity> personalActivities;
-    private List<Activity> assignedActivities = new ArrayList<>();
+    private final String ID;
+    private final List<Project> projects;
+    private final List<PersonalActivity> personalActivities;
+    private final List<Activity> assignedActivities = new ArrayList<>();
 
     public Employee(String ID) { // Written by BAP
         this.ID = ID;
-        this.projects = new ArrayList<Project>();
-        this.personalActivities = new ArrayList<PersonalActivity>();
+        this.projects = new ArrayList<>();
+        this.personalActivities = new ArrayList<>();
     }
 
     public void addProject(Project project) {
@@ -33,9 +33,7 @@ public class Employee {
         LocalDate start = LocalDate.parse(from);
         LocalDate end = LocalDate.parse(to);
         if(start.isAfter(end)) throw new IllegalArgumentException("Start date is after end date");
-        for (int i = 0; i < personalActivities.size(); i++) {
-            PersonalActivity pa = personalActivities.get(i);
-
+        for (PersonalActivity pa : personalActivities) {
             if (pa.getName().equals(name) && pa.getStartDate().equals(start) && pa.getEndDate().equals(end)) {
                 throw new IllegalArgumentException("Personal activity already exists");
             }
@@ -45,9 +43,7 @@ public class Employee {
 
 
     public boolean hasPersonalActivity(String name) { // Written by OFK
-        for (int i = 0; i < personalActivities.size(); i++) {
-            PersonalActivity pa = personalActivities.get(i);
-
+        for (PersonalActivity pa : personalActivities) {
             if (pa.getName().equals(name)) {
                 return true;
             }
@@ -63,18 +59,14 @@ public class Employee {
     
     public boolean isAvailable(int week, int year) {// Written by OFK
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
-        for (int i = 0; i < assignedActivities.size(); i++) {
-            Activity a = assignedActivities.get(i);
-
+        for (Activity a : assignedActivities) {
             int actWeek = a.getStartDate().get(weekFields.weekOfWeekBasedYear());
             int actYear = a.getStartDate().getYear();
             if (actWeek == week && actYear == year) {
                 return false;
             }
         }
-        for (int i = 0; i < personalActivities.size(); i++) {
-            PersonalActivity pa = personalActivities.get(i);
-
+        for (PersonalActivity pa : personalActivities) {
             int startYear = pa.getStartDate().getYear();
             int startWeek = pa.getStartDate().get(weekFields.weekOfWeekBasedYear());
             int endYear = pa.getEndDate().getYear();
@@ -89,16 +81,17 @@ public class Employee {
         }
         return true;
     }
-    public boolean isAvailable(LocalDate start, LocalDate end) { // Wriiten by BAP
 
+    public boolean isAvailable(LocalDate start, LocalDate end) { // Written by BAP
         for (PersonalActivity a : personalActivities) {
             LocalDate busyStart = a.getStartDate();
             LocalDate busyEnd = a.getEndDate();
-            if(busyStart.isAfter(end) && busyStart.isAfter(start)) return true;
-            if(start.isAfter(busyEnd) && end.isAfter(busyEnd)) return true;
+            if (!(busyStart.isAfter(end) && busyStart.isAfter(start) || start.isAfter(busyEnd) && end.isAfter(busyEnd)))
+                return false;
         }
-        return personalActivities.isEmpty();
+        return true;
     }
+
     public Project getProject(int id) { // Written by BAP
         for (Project p : projects) {
             if (p.getID() == id) return p;
