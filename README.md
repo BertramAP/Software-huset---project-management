@@ -1,1 +1,1 @@
-Cucumber feature files in resources folder under test
+gCucumber feature files in resources folder under test

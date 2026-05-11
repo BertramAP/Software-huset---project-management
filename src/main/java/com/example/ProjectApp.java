@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.example.errors.DuplicateProjectNameException;
 public class ProjectApp {
-    private List<Activity> activities = new ArrayList<>();
     private List<Employee> employees = new ArrayList<>();
     private List<Project> projects = new ArrayList<>();
 
@@ -119,4 +118,30 @@ public class ProjectApp {
 
         return project.assignToActivity(activtyID, emp);
     }
+    public boolean deleteActivity(String activityID, int projectID) { // Written by BAP & assert written by MJ
+        assert projectID != 0;
+        Project project = getProject(projectID);
+        // Pre-conditions
+        List<Activity> activitiesList = project.getActivities();
+        int orginalSize = activitiesList.size();
+        assert activitiesList != null;
+        assert activityID != null;
+        assert project != null;
+        for (Activity activity: activitiesList) {
+            assert activity != null;
+            assert activity.getID() != null;
+        }
+
+        for(int i = 0; i < activitiesList.size(); i++) {
+            if(activitiesList.get(i).getID().equals(activityID)) {
+                activitiesList.remove(i);
+
+                assert activitiesList.size() == orginalSize - 1; // Post-condition
+                return true;
+            }
+        }
+        assert activitiesList.size() == orginalSize; // Post-condition
+        return false;
+    }
+
 }
