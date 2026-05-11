@@ -70,7 +70,6 @@ public class Project {
         } else {
             throw new DuplicateActivitiesIDException("Activity already exists");
         }
-
     }
     public int getID() {
         return id;
