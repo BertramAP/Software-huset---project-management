@@ -108,8 +108,8 @@ public class Employee {
         assert assignedActivities.size() == orginalSize; // Post-condition
         return false;
     }
-    public int viewHours(LocalDate date) { // Written by BAP
-        int totalRegisteredHours = 0;
+    public double viewHours(LocalDate date) { // Written by BAP
+        int totalHalfHours = 0;
         for (Activity a : assignedActivities) {
             List<Contribution> contributions = a.getContributions(this.ID);
             if(contributions == null) {
@@ -118,10 +118,10 @@ public class Employee {
 
             for(Contribution c : contributions) {
                 if(c != null && c.getDate().equals(date)) {
-                    totalRegisteredHours += c.getWorkTime() / 2;
+                    totalHalfHours += c.getWorkTime();
                 }
             }
         }
-        return totalRegisteredHours;
+        return totalHalfHours / 2.0;
     }
 }

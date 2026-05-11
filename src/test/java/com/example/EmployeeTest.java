@@ -114,7 +114,7 @@ public class EmployeeTest {
         appHolder.getCurrentProject().getActivity(activityName).addContribution(new Contribution(employee, hours * 2, localDate));
     }
 
-    private int totalRegisteredHours;
+    private double totalRegisteredHours;
 
     @When("the employee {string} views registered hours for date {string}")
     public void theEmployeeViewsRegisteredHoursForDate(String employeeID, String date) { // Written by OFK
@@ -122,9 +122,9 @@ public class EmployeeTest {
         this.totalRegisteredHours =  appHolder.getApp().getEmployee(employeeID).viewHours(target);
     }
 
-    @Then("the total registered hours are {int}")
-    public void theTotalRegisteredHoursAre(int expected) { // Written by OFK
-        assertEquals(expected, totalRegisteredHours);
+    @Then("the total registered hours are {double}")
+    public void theTotalRegisteredHoursAre(double expected) { // Written by OFK
+        assertEquals(expected, totalRegisteredHours, 0.0001);
     }
 
     @And("the employee {string} changes the registered hours to {int} on activity {string} on date {string}")

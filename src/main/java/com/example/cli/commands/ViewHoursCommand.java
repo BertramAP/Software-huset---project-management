@@ -26,7 +26,7 @@ public class ViewHoursCommand extends AbstractCommand {
             throw new IllegalArgumentException("User does not exist!");
         String date = getStringInput(scanner, "Which date do you want to check? (yyyy-mm-dd)");
         LocalDate localDate = LocalDate.parse(date);
-        int hours = employee.viewHours(localDate);
+        double hours = employee.viewHours(localDate);
         System.out.println("Hours registered: " + hours);
     }
 }
