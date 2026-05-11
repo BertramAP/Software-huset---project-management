@@ -19,6 +19,10 @@ public class ProjectApp {
         // For post condition
         int originalSize = projects.size();
 
+        if (projects.size() >= 999) {
+            throw new IllegalStateException("Cannot create more than 999 projects per year");
+        }
+
         int year = LocalDate.now().getYear();
         int id =  (year - 2000) * 1000 + projects.size() + 1; // Limits the amount of projects per year to 999
         Project project = new Project(id, name);
