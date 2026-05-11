@@ -71,12 +71,14 @@ public class ProjectApp {
         assert startDate != null;
         assert endDate != null;
         assert creatorID != null;
-        assert budgetHalfHours >= 0;
+        assert budgetHalfHours >= 0; // This assert doesnt help the CLI
 
         Project project = getProject(projectId);
         if (project == null) throw new IllegalArgumentException("Project does not exist");
 
         if (project.getActivity(id) != null) throw new IllegalArgumentException("Activity already exists!");
+        if (budgetHalfHours < 0) throw new IllegalArgumentException("budget half hours is negative!");
+        if (startDate.isAfter(endDate)) throw new IllegalArgumentException("Start date is after the end date!");
         Activity activity = new Activity(id, startDate, endDate, budgetHalfHours, creatorID);
         project.addActivity(activity);
 
