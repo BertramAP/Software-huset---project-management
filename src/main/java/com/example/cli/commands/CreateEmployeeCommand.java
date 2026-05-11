@@ -27,6 +27,9 @@ public class CreateEmployeeCommand extends AbstractCommand {
             if (name.isEmpty()) System.out.println("Initials cannot be empty.");
         } while (name.isEmpty());
         Employee employee = app.createEmployee(name);
+        if (employee == null) {
+            throw new IllegalArgumentException("Employee already exists!");
+        }
         System.out.println("Created employee " + name + " with ID " + employee.getID());
     }
 }
