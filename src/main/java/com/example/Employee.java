@@ -33,6 +33,11 @@ public class Employee {
         LocalDate start = LocalDate.parse(from);
         LocalDate end = LocalDate.parse(to);
         if(start.isAfter(end)) throw new IllegalArgumentException("Start date is after end date");
+        for (PersonalActivity pa : personalActivities) {
+            if (pa.getName().equals(name) && pa.getStartDate().equals(start) && pa.getEndDate().equals(end)) {
+                throw new IllegalArgumentException("Personal activity already exists");
+            }
+        }
         personalActivities.add(new PersonalActivity(name, start, end));
     }
 
