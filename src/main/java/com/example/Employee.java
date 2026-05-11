@@ -90,13 +90,14 @@ public class Employee {
         return true;
     }
     public boolean isAvailable(LocalDate start, LocalDate end) { // Wriiten by BAP
+
         for (PersonalActivity a : personalActivities) {
             LocalDate busyStart = a.getStartDate();
             LocalDate busyEnd = a.getEndDate();
             if(busyStart.isAfter(end) && busyStart.isAfter(start)) return true;
             if(start.isAfter(busyEnd) && end.isAfter(busyEnd)) return true;
         }
-        return false;
+        return personalActivities.isEmpty();
     }
     public Project getProject(int id) { // Written by BAP
         for (Project p : projects) {
