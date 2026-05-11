@@ -1,11 +1,10 @@
 package com.example.cli.commands;
 
-import com.example.Cli;
-import com.example.Employee;
-import com.example.ProjectApp;
+import com.example.*;
 import com.example.cli.AbstractCommand;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 // Written by DIS
 public class AssignActivityCommand extends AbstractCommand {
@@ -22,7 +21,15 @@ public class AssignActivityCommand extends AbstractCommand {
     @Override
     public void onCommand(Scanner scanner) {
         int projectId = promptForProjectId(scanner);
-        String activityName = getStringInput(scanner, "Choose an activity:");
+        Project project = app.getProject(projectId);
+        if (project == null)
+            throw new IllegalArgumentException("Project does not exist!");
+
+        System.out.println("Select an activity:");
+        String activites = project.getActivities().stream().map(activity -> activity.getID() + " ").collect(Collectors.joining());
+        System.out.println(activites);
+        String activityName = getStringInput(scanner);
+
         String username = getStringInput(scanner, "Which employee should be assigned?");
 
         Employee employee = app.getEmployee(username);

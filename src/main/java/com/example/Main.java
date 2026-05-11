@@ -18,7 +18,7 @@ public class Main {
 
             scanner.close();
         } catch (FileNotFoundException e) {
-            //System.out.println("users.txt not found, skipping user import");
+            System.out.println("users.txt not found, skipping user import");
         }
 
         cli.setApp(app);
