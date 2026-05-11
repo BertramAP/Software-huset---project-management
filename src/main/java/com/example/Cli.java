@@ -20,15 +20,21 @@ public class Cli {
         login(scanner);
         System.out.println("Type \"help\" to view a list of available commands");
 
+        label:
         while (true) {
             System.out.print("> ");
             String cmd = scanner.nextLine().split(" ")[0];
-            if (cmd.equals("exit"))
-                break;
-
-            if (cmd.equals("help")) {
-                printHelp();
-                continue;
+            switch (cmd) {
+                case "exit":
+                    break label;
+                case "help":
+                    printHelp();
+                    continue;
+                case "sign-out":
+                    currentUser = null;
+                    System.out.println("Signed out successfully\n");
+                    login(scanner);
+                    continue;
             }
 
             AbstractCommand command = commands.get(cmd);
@@ -79,6 +85,7 @@ public class Cli {
             String usage = c.getUsage();
             System.out.println(usage + repeatChar(" ", longestUsage - usage.length()) + "\t" + c.getDescription());
         }
+        System.out.println("sign-out");
         System.out.println("exit");
     }
 
