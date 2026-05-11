@@ -20,7 +20,11 @@ public class CreateActivityCommand extends AbstractCommand {
 
     @Override
     public void onCommand(Scanner scanner) {
-        String name = getStringInput(scanner, "Choose a name for the activity:");
+        String name;
+        do {
+            name = getStringInput(scanner, "Choose a name for the activity:").trim();
+            if (name.isEmpty()) System.out.println("Name cannot be empty.");
+        } while (name.isEmpty());
         int projectId = promptForProjectId(scanner);
         int startWeek = getIntegerInput(scanner, "Which week does the activity start?");
         int endWeek = getIntegerInput(scanner, "Which week does the activity end?");

@@ -21,7 +21,11 @@ public class CreateProjectCommand extends AbstractCommand {
 
     @Override
     public void onCommand(Scanner scanner) {
-        String name = getStringInput(scanner, "Choose a name for the project:");
+        String name;
+        do {
+            name = getStringInput(scanner, "Choose a name for the project:").trim();
+            if (name.isEmpty()) System.out.println("Name cannot be empty.");
+        } while (name.isEmpty());
         Project project = app.createProject(name);
         System.out.println("Created project " + name + " with ID " + project.getID());
     }
