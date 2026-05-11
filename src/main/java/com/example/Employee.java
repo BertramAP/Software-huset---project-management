@@ -33,12 +33,26 @@ public class Employee {
         LocalDate start = LocalDate.parse(from);
         LocalDate end = LocalDate.parse(to);
         if(start.isAfter(end)) throw new IllegalArgumentException("Start date is after end date");
+        for (int i = 0; i < personalActivities.size(); i++) {
+            PersonalActivity pa = personalActivities.get(i);
+
+            if (pa.getName().equals(name) && pa.getStartDate().equals(start) && pa.getEndDate().equals(end)) {
+                throw new IllegalArgumentException("Personal activity already exists");
+            }
+        }
         personalActivities.add(new PersonalActivity(name, start, end));
     }
 
 
     public boolean hasPersonalActivity(String name) { // Written by OFK
-        return personalActivities.stream().anyMatch(a -> a.getName().equals(name));
+        for (int i = 0; i < personalActivities.size(); i++) {
+            PersonalActivity pa = personalActivities.get(i);
+
+            if (pa.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -49,14 +63,18 @@ public class Employee {
     
     public boolean isAvailable(int week, int year) {// Written by OFK
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
-        for (Activity a : assignedActivities) {
+        for (int i = 0; i < assignedActivities.size(); i++) {
+            Activity a = assignedActivities.get(i);
+
             int actWeek = a.getStartDate().get(weekFields.weekOfWeekBasedYear());
             int actYear = a.getStartDate().getYear();
             if (actWeek == week && actYear == year) {
                 return false;
             }
         }
-        for (PersonalActivity pa : personalActivities) {
+        for (int i = 0; i < personalActivities.size(); i++) {
+            PersonalActivity pa = personalActivities.get(i);
+
             int startYear = pa.getStartDate().getYear();
             int startWeek = pa.getStartDate().get(weekFields.weekOfWeekBasedYear());
             int endYear = pa.getEndDate().getYear();

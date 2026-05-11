@@ -24,7 +24,6 @@ public class Project {
     }
 
     public void assignEmployee(Employee employee) {
-        System.out.println(hasEmployee(employee.getID()));
         if(!hasEmployee(employee.getID())) {
             this.employees.add(employee);
         }
@@ -71,7 +70,6 @@ public class Project {
         } else {
             throw new DuplicateActivitiesIDException("Activity already exists");
         }
-
     }
     public int getID() {
         return id;

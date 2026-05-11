@@ -2,6 +2,7 @@ package com.example.cli.commands;
 
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import com.example.*;
 import com.example.cli.AbstractCommand;
@@ -25,7 +26,10 @@ public class RegisterTimeCommand extends AbstractCommand {
         if (project == null)
             throw new IllegalArgumentException("Project does not exist!");
 
-        String activityName = getStringInput(scanner, "Select an activity:");
+        System.out.println("Select an activity:");
+        String activites = project.getActivities().stream().map(activity -> activity.getID() + " ").collect(Collectors.joining());
+        System.out.println(activites);
+        String activityName = getStringInput(scanner);
         Activity activity = project.getActivity(activityName);
         if (activity == null)
             throw new IllegalArgumentException("Activity does not exist!");
