@@ -102,6 +102,7 @@ public class Cli {
         commands.put("view-hours-on-date", new ViewHoursCommand("view-hours-on-date", app, this));
         commands.put("assign-project", new AssignProjectCommand("assign-project", app, this));
         commands.put("assign-personal-activity", new AssignPersonalActivity("assign-personal-activity", app, this));
+        commands.put("delete-activity", new DeleteActivityCommand("delete-activity", app, this));
     }
 
     public Employee getCurrentUser() {

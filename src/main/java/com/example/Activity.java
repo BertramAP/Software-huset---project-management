@@ -86,4 +86,7 @@ public class Activity {
         }
         return false;
     }
+    public ArrayList<Employee> getEmployees() { // Written by BAP
+        return employees;
+    }
 }
