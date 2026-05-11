@@ -1,8 +1,6 @@
-// Written by AK
 package com.example;
 
 import java.time.LocalDate;
-// Written by AK
 public class Contribution {
     private Employee employee;
     private int workTime;
