@@ -24,7 +24,10 @@ public class Project {
     }
 
     public void assignEmployee(Employee employee) {
-        this.employees.add(employee);
+        System.out.println(hasEmployee(employee.getID()));
+        if(!hasEmployee(employee.getID())) {
+            this.employees.add(employee);
+        }
     }
     public void assignProjectLeader(Employee employee) { // Written by AK
         if (this.projectLeader != null) {

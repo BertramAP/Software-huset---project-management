@@ -29,7 +29,8 @@ public class ProjectTest {
 
     @And("the employee {string} is assigned to the project")
     public void the_employee_is_assigned_to_the_project(String initials) {
-        this.project.assignEmployee(appHolder.getCurrentEmployee());
+        if(appHolder.getCurrentEmployee() == null) {appHolder.setCurrentEmployee(new Employee(initials));}
+        this.appHolder.getCurrentProject().assignEmployee(appHolder.getCurrentEmployee());
     }
 
     @And("the project has an activity with name {string}")

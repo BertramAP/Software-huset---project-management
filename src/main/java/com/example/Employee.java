@@ -32,6 +32,7 @@ public class Employee {
     public void addPersonalActivity(String name, String from, String to) { // Written by OFK
         LocalDate start = LocalDate.parse(from);
         LocalDate end = LocalDate.parse(to);
+        if(start.isAfter(end)) throw new IllegalArgumentException("Start date is after end date");
         personalActivities.add(new PersonalActivity(name, start, end));
     }
 
