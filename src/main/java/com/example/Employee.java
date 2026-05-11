@@ -89,7 +89,7 @@ public class Employee {
         }
         return true;
     }
-    public boolean isAvailable(LocalDate start, LocalDate end) {
+    public boolean isAvailable(LocalDate start, LocalDate end) { // Wriiten by BAP
         for (PersonalActivity a : personalActivities) {
             LocalDate busyStart = a.getStartDate();
             LocalDate busyEnd = a.getEndDate();

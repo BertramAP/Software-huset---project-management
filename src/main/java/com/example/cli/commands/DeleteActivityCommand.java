@@ -5,7 +5,7 @@ import com.example.cli.AbstractCommand;
 
 import java.util.Scanner;
 import java.util.stream.Collectors;
-
+// Written by BAP
 public class DeleteActivityCommand extends AbstractCommand {
     public DeleteActivityCommand(String usage, ProjectApp app, Cli cli) {
         super(usage, app, cli);
