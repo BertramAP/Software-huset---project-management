@@ -113,7 +113,7 @@ public class Project {
     public boolean assignToActivity(String activityID, Employee emp) { // Written by BAP
         Activity activity = getActivity(activityID);
         if (activity == null) return false;
-        if (!emp.isAvailable(activity.getStartDate().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR), activity.getStartDate().getYear())) throw new IllegalArgumentException("Employee is not available");
+        if (!emp.isAvailable(activity.getStartDate(), activity.getEndDate())) throw new IllegalArgumentException("Employee is not available");
         if (!hasEmployee(emp.getID())) assignEmployee(emp);
         activity.addEmployee(emp);
         emp.assignToActivity(activity); // Add activity to employees own personal list (Written by MJ)

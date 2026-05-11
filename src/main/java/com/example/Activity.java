@@ -71,6 +71,8 @@ public class Activity {
         return startDate;
     }
 
+    public LocalDate getEndDate() {return this.endDate; }
+
     public void addEmployee(Employee employee) { // Written by AK
         if (hasEmployee(employee.getID())) {
             throw new IllegalArgumentException("Employee is already assigned to the activity");
