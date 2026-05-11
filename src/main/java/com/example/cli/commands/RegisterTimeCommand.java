@@ -3,11 +3,7 @@ package com.example.cli.commands;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import com.example.Activity;
-import com.example.Cli;
-import com.example.Contribution;
-import com.example.Project;
-import com.example.ProjectApp;
+import com.example.*;
 import com.example.cli.AbstractCommand;
 
 // Written by DIS
@@ -33,6 +29,12 @@ public class RegisterTimeCommand extends AbstractCommand {
         Activity activity = project.getActivity(activityName);
         if (activity == null)
             throw new IllegalArgumentException("Activity does not exist!");
+
+        // Add user to the project/activity if they aren't already (Written by MJ)
+        if (!project.employees.contains( cli.getCurrentUser() ))
+            project.assignEmployee(cli.getCurrentUser());
+        if (!activity.hasEmployee(cli.getCurrentUser().getID()))
+            project.assignToActivity(activity.getID(), cli.getCurrentUser());
 
         int halfHours = getIntegerInput(scanner, "How many half hours have you completed on this task?");
         activity.addContribution(
